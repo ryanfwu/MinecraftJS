@@ -37,3 +37,11 @@ body {
     font-family:'Minecraftia';
     color:white;
 }
+
+#terms {
+    color:white;
+}
+
+#terms:active {
+    color:lightblue;
+}
