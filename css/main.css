@@ -9,7 +9,7 @@ body {
     width:75%;
 }
 
-#singleplayer {
+#singleplayer,#multiplayer {
     display:block;
     top:15em;
     font-family:'Minecraftia';
@@ -23,6 +23,10 @@ body {
     border-style:solid;
     border-width:2px;
     border-color:black;
+}
+
+#singleplayer,#multiplayer:active {
+    background-color:yellow;
 }
 
 #copyright {
