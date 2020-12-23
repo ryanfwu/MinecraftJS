@@ -25,7 +25,7 @@ body {
     border-color:black;
 }
 
-#singleplayer,#multiplayer:active {
+#singleplayer:active,#multiplayer:active {
     background-color:yellow;
 }
 
