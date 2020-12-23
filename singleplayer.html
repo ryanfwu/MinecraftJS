@@ -43,6 +43,9 @@
                     camera.inertia = 0;
                     camera.speed = 0.75;
                     
+                    var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 500, height: 500});
+                    ground.checkCollisions = true;
+                    
                     var box = BABYLON.Mesh.CreateBox("Box",4.0,scene);
                     box.checkCollisions = true;
 
