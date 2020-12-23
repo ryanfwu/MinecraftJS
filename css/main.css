@@ -1,12 +1,17 @@
+body {
+    background-color:black;
+}
+
 #title {
     display:block;
     margin-left: auto;
     margin-right: auto;
+    width:75%;
 }
 
 #singleplayer {
     display:block;
-    top:10em;
+    top:15em;
     font-family:'Minecraftia';
     font-size:30px;
     width:50%;
@@ -18,4 +23,13 @@
     border-style:solid;
     border-width:2px;
     border-color:black;
+}
+
+#copyright {
+    display:block;
+    font-size:14px;
+    margin-left:auto;
+    margin-right:auto;
+    font-family:'Minecraftia';
+    color:white;
 }
