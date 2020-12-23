@@ -5,9 +5,31 @@
         <link rel="icon" href="./assets/img/favicon.png">
         <link rel="stylesheet" href="./css/game.css">
         <title>MinecraftJS | Singleplayer</title>
+        <script src="https://cdn.babylonjs.com/babylon.max.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     </head>
     <body>
         <canvas id="canvas"></canvas>
-        <script></script>
+        <script>
+            window.addEventListener('DOMContentLoaded', function(){
+                var canvas = document.getElementById('canvas');
+                var engine = new BABYLON.Engine(canvas, true);
+                var createScene = function(){
+                    var scene = new BABYLON.Scene(engine);
+
+                    scene.clearColor = new BABYLON.Color3.White();
+                    var camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 0,-10), scene);
+                    camera.setTarget(BABYLON.Vector3.Zero());
+                    var box = BABYLON.Mesh.CreateBox("Box",4.0,scene);
+
+                    return scene;
+                }
+              
+                var scene = createScene();
+                    engine.runRenderLoop(function(){
+                    scene.render();
+                });
+            });
+        </script>
     </body>
 </html>
