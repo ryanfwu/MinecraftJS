@@ -40,6 +40,7 @@
                     camera.keysLeft.push(65);
                     camera.keysRight.push(68);
                     camera.sensibility = 0.01;
+                    camera.inertia = 0;
                     
                     var box = BABYLON.Mesh.CreateBox("Box",4.0,scene);
                     box.checkCollisions = true;
