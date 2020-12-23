@@ -22,12 +22,17 @@
                 
                 var createScene = function(){
                     var scene = new BABYLON.Scene(engine);
-                    scene.clearColor = new BABYLON.Color3(0.529,0.808,0.922);
+                    scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
+                    scene.gravity = new BABYLON.Vector3(0, -0.1635, 0);
+                    scene.collisionsEnabled = true;
                     
                     var camera = new BABYLON.UniversalCamera('camera', new BABYLON.Vector3(0, 0,-10), scene);
                     camera.setTarget(BABYLON.Vector3.Zero());
                     camera.rotation.x = BABYLON.Tools.ToRadians(yaw);
                     camera.rotation.y = BABYLON.Tools.ToRadians(pitch);
+                    camera.applyGravity = true;
+                    camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
+                    camera.checkCollisions = true;
                     
                     camera.attachControl(canvas,true);
                     camera.keysUp.push(87);
@@ -37,6 +42,7 @@
                     camera.sensibility = 0.01;
                     
                     var box = BABYLON.Mesh.CreateBox("Box",4.0,scene);
+                    box.checkCollisions = true;
 
                     return scene;
                 }
