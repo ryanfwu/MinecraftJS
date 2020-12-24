@@ -17,7 +17,7 @@
                 var jump = false;
                 var walkplaying = false;
                 
-                window.onkeyup = function cameraJump(event) {
+                window.onkeydown = function cameraJump(event) {
                     if (event.keyCode == 32) {
                         jump = true;
                     }
@@ -47,8 +47,8 @@
                     camera.inertia = 0;
                     camera.speed = 0.75;
                     
-                    if (jump) {
-                        camera.position.y += 10;
+                    if (jump == true) {
+                        camera.position.y = camera.position.y + 10;
                         jump = false;
                     }
                     
