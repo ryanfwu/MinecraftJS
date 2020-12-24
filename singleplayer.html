@@ -15,6 +15,7 @@
                 var canvas = document.getElementById('canvas');
                 var engine = new BABYLON.Engine(canvas, true);
                 var jump = false;
+                var walkplaying = false;
                 
                 window.onkeyup = function cameraJump(event) {
                     if (event.keyCode == 32) {
@@ -66,28 +67,34 @@
                     
                     window.addEventListener("keydown", function(event) {
                         if ((event.keyCode == 87 || event.keyCode == 65) || (event.keyCode == 83 || event.keyCode == 68)) {
-                            var walknumber = Math.floor(Math.random() * 6) + 1;
-                            switch (walknumber) {
-                                case 1:
-                                    walk1.play();
-                                    break;
-                                case 2:
-                                    walk2.play();
-                                    break;
-                                case 3:
-                                    walk3.play();
-                                    break;
-                                case 4:
-                                    walk4.play();
-                                    break;
-                                case 5:
-                                    walk5.play();
-                                    break;
-                                case 6:
-                                    walk6.play();
-                                    break;
-                                default:
-                                    walk1.play();
+                            if (walkplaying == false) {
+                                var walknumber = Math.floor(Math.random() * 6) + 1;
+                                switch (walknumber) {
+                                    case 1:
+                                        walk1.play();
+                                        break;
+                                    case 2:
+                                        walk2.play();
+                                        break;
+                                    case 3:
+                                        walk3.play();
+                                        break;
+                                    case 4:
+                                        walk4.play();
+                                        break;
+                                    case 5:
+                                        walk5.play();
+                                        break;
+                                    case 6:
+                                        walk6.play();
+                                        break;
+                                    default:
+                                        walk1.play();
+                                }
+                                walkplaying = true;
+                                setTimeout(function() {
+                                    walkplaying = false;
+                                }, 500);
                             }
                         }
                     });
