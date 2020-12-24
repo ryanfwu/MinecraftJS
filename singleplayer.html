@@ -44,15 +44,10 @@
                     camera.speed = 0.75;
                     
                     var groundTexture = new BABYLON.StandardMaterial("groundTexture", scene);
-                    groundTexture.diffuseColor = new BABYLON.Color3(0.51, 0.39, 0.22);
+                    groundTexture.specularColor = new BABYLON.Color3(0.51, 0.39, 0.22);
                     var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 500, height: 500});
                     ground.material = groundTexture;
                     ground.checkCollisions = true;
-                    
-                    var boxTexture = new BABYLON.StandardMaterial("boxTexture", scene);
-                    groundTexture.diffuseColor = new BABYLON.Color3(0, 1, 0);
-                    var box = BABYLON.Mesh.CreateBox("Box", 4.0, scene);
-                    box.checkCollisions = true;
 
                     return scene;
                 }
