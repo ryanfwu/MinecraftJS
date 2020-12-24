@@ -14,16 +14,7 @@
             window.addEventListener('DOMContentLoaded', function(){
                 var canvas = document.getElementById('canvas');
                 var engine = new BABYLON.Engine(canvas, true);
-                var jump = false;
                 var walkplaying = false;
-                
-                window.onkeydown = function (event) {
-                    alert("KEYDOWN, KEYCODE: " + event.keyCode);
-                    if (event.keyCode == 32) {
-                        jump = true;
-                        alert("KEYDOWN, SPACE PRESSED");
-                    }
-                }
                 
                 var createScene = function(){
                     var scene = new BABYLON.Scene(engine);
@@ -48,13 +39,6 @@
                     camera.sensibility = 0.01;
                     camera.inertia = 0;
                     camera.speed = 0.75;
-                    
-                    if (jump == true) {
-                        alert("JUMP IS TRUE");
-                        camera.position.y = camera.position.y + 10;
-                        alert("CAMERA ADJUSTED");
-                        jump = false;
-                    }
                     
                     var groundTexture = new BABYLON.StandardMaterial("groundTexture", scene);
                     groundTexture.specularColor = new BABYLON.Color3(0.51, 0.39, 0.22);
