@@ -16,6 +16,13 @@
                 var engine = new BABYLON.Engine(canvas, true);
                 var yaw = 0;
                 var pitch = 0;
+                var jump = false;
+                
+                window.onkeyup = function cameraJump(event) {
+                    if (event.keyCode == 32) {
+                        jump = true;
+                    }
+                }
                 
                 var createScene = function(){
                     var scene = new BABYLON.Scene(engine);
@@ -42,6 +49,11 @@
                     camera.sensibility = 0.01;
                     camera.inertia = 0;
                     camera.speed = 0.75;
+                    
+                    if (jump) {
+                        camera.position.y += 5;
+                        jump = false;
+                    }
                     
                     var groundTexture = new BABYLON.StandardMaterial("groundTexture", scene);
                     groundTexture.specularColor = new BABYLON.Color3(0.51, 0.39, 0.22);
