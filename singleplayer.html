@@ -20,6 +20,8 @@
                 canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
                 canvas.requestPointerLock();
                 
+                
+                
                 var createScene = function(){
                     var scene = new BABYLON.Scene(engine);
                     scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
@@ -33,7 +35,6 @@
                     camera.applyGravity = true;
                     camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
                     camera.checkCollisions = true;
-                    
                     camera.attachControl(canvas,true);
                     camera.keysUp.push(87);
                     camera.keysDown.push(83)
@@ -43,10 +44,15 @@
                     camera.inertia = 0;
                     camera.speed = 0.75;
                     
+                    var groundTexture = new BABYLON.StandardMaterial("groundTexture", scene);
+                    groundTexture.diffuseColor = new BABYLON.Color3(0.51, 0.39, 0.22);
                     var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 500, height: 500});
+                    ground.material = groundTexture;
                     ground.checkCollisions = true;
                     
-                    var box = BABYLON.Mesh.CreateBox("Box",4.0,scene);
+                    var boxTexture = new BABYLON.StandardMaterial("boxTexture", scene);
+                    groundTexture.diffuseColor = new BABYLON.Color3(0, 1, 0);
+                    var box = BABYLON.Mesh.CreateBox("Box", 4.0, scene);
                     box.checkCollisions = true;
 
                     return scene;
