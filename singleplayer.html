@@ -59,14 +59,43 @@
                     ground.material = groundTexture;
                     ground.checkCollisions = true;
                     
-                    var walkSound = new BABYLON.Sound("Walk", "./assets/sounds/walk.mp3", scene);
+                    var walk1 = new BABYLON.Sound("Walk1", "./assets/sounds/walk1.ogg", scene);
+                    var walk2 = new BABYLON.Sound("Walk2", "./assets/sounds/walk2.ogg", scene);
+                    var walk3 = new BABYLON.Sound("Walk3", "./assets/sounds/walk3.ogg", scene);
+                    var walk4 = new BABYLON.Sound("Walk4", "./assets/sounds/walk4.ogg", scene);
+                    var walk5 = new BABYLON.Sound("Walk5", "./assets/sounds/walk5.ogg", scene);
+                    var walk6 = new BABYLON.Sound("Walk6", "./assets/sounds/walk6.ogg", scene);
+                    
                     window.addEventListener("keydown", function(event) {
                         if ((event.keyCode == 87 || event.keyCode == 65) || (event.keyCode == 83 || event.keyCode == 68)) {
-                            walkSound.play();
+                            var walknumber = Math.floor(Math.random() * 6) + 1;
+                            switch (walknumber) {
+                                case 1:
+                                    walk1.play();
+                                    break;
+                                case 2:
+                                    walk2.play();
+                                    break;
+                                case 3:
+                                    walk3.play();
+                                    break;
+                                case 4:
+                                    walk4.play();
+                                    break;
+                                case 5:
+                                    walk5.play();
+                                    break;
+                                case 6:
+                                    walk6.play();
+                                    break;
+                                default:
+                                    walk1.play();
+                            }
                         }
                     }
                                             
                     var music = new BABYLON.Sound("Music", "./assets/sounds/music.mp3", scene, null, {loop: true, autoplay: true});
+                    music.play();
 
                     return scene;
                 }
