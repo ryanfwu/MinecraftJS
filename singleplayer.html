@@ -28,6 +28,8 @@
                     scene.gravity = new BABYLON.Vector3(0, -0.1635, 0);
                     scene.collisionsEnabled = true;
                     
+                    var light = new BABYLON.PointLight("light", new BABYLON.Vector3(0, 0, -10), scene);
+                    
                     var camera = new BABYLON.UniversalCamera('camera', new BABYLON.Vector3(0, 0,-10), scene);
                     camera.setTarget(BABYLON.Vector3.Zero());
                     camera.rotation.x = BABYLON.Tools.ToRadians(yaw);
