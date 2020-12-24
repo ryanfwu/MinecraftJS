@@ -14,8 +14,6 @@
             window.addEventListener('DOMContentLoaded', function(){
                 var canvas = document.getElementById('canvas');
                 var engine = new BABYLON.Engine(canvas, true);
-                var yaw = 0;
-                var pitch = 0;
                 var jump = false;
                 
                 window.onkeyup = function cameraJump(event) {
@@ -60,6 +58,15 @@
                     var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 100, height: 100});
                     ground.material = groundTexture;
                     ground.checkCollisions = true;
+                    
+                    var walkSound = new BABYLON.Sound("Walk", "./assets/sounds/walk.mp3", scene);
+                    window.addEventListener("keydown", function(event) {
+                        if ((event.keyCode == 87 || event.keyCode == 65) || (event.keyCode == 83 || event.keyCode == 68)) {
+                            walkSound.play();
+                        }
+                    }
+                                            
+                    var music = new BABYLON.Sound("Music", "./assets/sounds/music.mp3", scene, null, {loop: true, autoplay: true});
 
                     return scene;
                 }
