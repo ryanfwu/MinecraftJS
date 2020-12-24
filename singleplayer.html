@@ -17,11 +17,6 @@
                 var yaw = 0;
                 var pitch = 0;
                 
-                canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
-                canvas.requestPointerLock();
-                
-                
-                
                 var createScene = function(){
                     var scene = new BABYLON.Scene(engine);
                     scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
@@ -67,6 +62,9 @@
                     engine.runRenderLoop(function(){
                     scene.render();
                 });
+                
+                canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
+                canvas.requestPointerLock();
             });
         </script>
     </body>
