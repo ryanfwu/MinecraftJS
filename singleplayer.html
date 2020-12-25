@@ -40,6 +40,13 @@
                     camera.inertia = 0;
                     camera.speed = 0.75;
                     
+                    window.addEventListener("keyup", jumpCheck, false);
+                    function jumpCheck(event) {
+                        if (event.keyCode == case 32) {
+                            camera.position.y += 3;
+                        }
+                    }
+                    
                     var groundTexture = new BABYLON.StandardMaterial("groundTexture", scene);
                     groundTexture.specularColor = new BABYLON.Color3(0.51, 0.39, 0.22);
                     var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 100, height: 100});
