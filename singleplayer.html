@@ -5,8 +5,9 @@
         <link rel="icon" href="./assets/img/favicon.png">
         <link rel="stylesheet" href="./css/game.css">
         <title>MinecraftJS | Singleplayer</title>
-        <script src="https://cdn.babylonjs.com/babylon.max.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.babylonjs.com/babylon.max.js"></script> <!-- BABYLONJS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script> <!-- JQUERY -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script> <!-- P5JS -->
     </head>
     <body>
         <canvas id="canvas" onclick="this.requestPointerLock();"></canvas>
@@ -16,17 +17,33 @@
                 var engine = new BABYLON.Engine(canvas, true);
                 var walkplaying = false;
                 
+                var generateChunk() {
+                    var chunk = [];
+                    
+                    for (var x = 1; x <= 16) {
+                        var chunkrow = [];
+                        for (var z = 1; z <= 16) {
+                            chunkrow.push(Math.round(noise(x, z) * 63) + 1);
+                        }
+                        chunk.push(chunkrow);
+                    }
+                    
+                    return chunk;
+                }
+                
+                var terrain = generateChunk();
+                
                 var createScene = function(){
                     var scene = new BABYLON.Scene(engine);
                     scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
                     scene.gravity = new BABYLON.Vector3(0, -0.1635, 0);
                     scene.collisionsEnabled = true;
                     
-                    var light = new BABYLON.PointLight("light", new BABYLON.Vector3(0, 100, -10), scene);
+                    var light = new BABYLON.PointLight("light", new BABYLON.Vector3(8, 200, 8), scene);
                     light.intensity = 1;
                     light.radius = 10000;
                     
-                    var camera = new BABYLON.UniversalCamera('camera', new BABYLON.Vector3(0, 5,-10), scene);
+                    var camera = new BABYLON.UniversalCamera('camera', new BABYLON.Vector3(8, 70, 8), scene);
                     camera.setTarget(BABYLON.Vector3.Zero());
                     camera.applyGravity = true;
                     camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
@@ -47,11 +64,24 @@
                         }
                     }
                     
-                    var groundTexture = new BABYLON.StandardMaterial("groundTexture", scene);
-                    groundTexture.specularColor = new BABYLON.Color3(0.51, 0.39, 0.22);
-                    var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 100, height: 100});
-                    ground.material = groundTexture;
-                    ground.checkCollisions = true;
+                    var blockTexture = new BABYLON.StandardMaterial("blockTexture", scene);
+                    blockTexture.specularColor = new BABYLON.Color3(0.51, 0.39, 0.22);
+                    
+                    for (var x; x < terrain.length; x++) {
+                        for (var z; z < terrain[i].length; z++) {
+                            for (var y; y < terrain[i][j]; y++) {
+                                var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), 1, scene);
+                                block.position.x = x;
+                                block.position.z = z;
+                                block.position.y = y;
+                                block.material = blockTexture;
+                                block.checkCollisions = true;
+                            }
+                        }
+                    }
+                    // var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 100, height: 100});
+                    // ground.material = groundTexture;
+                    // ground.checkCollisions = true;
                     
                     var walk1 = new BABYLON.Sound("Walk1", "./assets/sounds/walk1.ogg", scene);
                     var walk2 = new BABYLON.Sound("Walk2", "./assets/sounds/walk2.ogg", scene);
