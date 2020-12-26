@@ -94,40 +94,43 @@
                     for (var x = 1; x <= 16; x++) {
                         for (var z = 1; z <= 16; z++) {
                             for (var y = 1; y <= 64; y++) {
-                                var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
-                                block.position = new BABYLON.Vector3(x, y, z);
-                                block.checkCollisions = true;
-                                switch (terrain[256 * x + 16 * z + y]) {
-                                    case (blockCodes.air):
-                                        break;
-                                    case (blockCodes.stone):
-                                        block.diffuseTexture = stoneTexture;
-                                        break;
-                                    case (blockCodes.grass):
-                                        block.diffuseTexture = grassTexture;
-                                        break;
-                                    case (blockCodes.dirt):
-                                        block.diffuseTexture = dirtTexture;
-                                        break;
-                                    case (blockCodes.cobblestone):
-                                        block.diffuseTexture = cobblestoneTexture;
-                                        break;
-                                    case (blockCodes.planks):
-                                        block.diffuseTexture = planksTexture;
-                                        break;
-                                    case (blockCodes.log):
-                                        block.diffuseTexture = logTexture;
-                                        break;
-                                    case (blockCodes.bedrock):
-                                        block.diffuseTexture = bedrockTexture;
-                                        break;
-                                    default:
-                                        block.diffuseTexture = grassTexture;
-                                        console.log("[LOG] Unknown block ID " + terrain[256 * x + 16 * z + y] + " at " + x + " / " + y + " / " + z);
-                                        break;
+                                if (terrain[1024 * x + 64 * z + y] != blockCodes.air) {
+                                    var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
+                                    block.position = new BABYLON.Vector3(x, y, z);
+                                    block.checkCollisions = true;
+                                    
+                                    switch (terrain[1024 * x + 64 * z + y]) {
+                                        /* case (blockCodes.air):
+                                            break; */
+                                        case (blockCodes.stone):
+                                            block.diffuseTexture = stoneTexture;
+                                            break;
+                                        case (blockCodes.grass):
+                                            block.diffuseTexture = grassTexture;
+                                            break;
+                                        case (blockCodes.dirt):
+                                            block.diffuseTexture = dirtTexture;
+                                            break;
+                                        case (blockCodes.cobblestone):
+                                            block.diffuseTexture = cobblestoneTexture;
+                                            break;
+                                        case (blockCodes.planks):
+                                            block.diffuseTexture = planksTexture;
+                                            break;
+                                        case (blockCodes.log):
+                                            block.diffuseTexture = logTexture;
+                                            break;
+                                        case (blockCodes.bedrock):
+                                            block.diffuseTexture = bedrockTexture;
+                                            break;
+                                        default:
+                                            block.diffuseTexture = grassTexture;
+                                            console.log("[LOG] Unknown block ID " + terrain[256 * x + 16 * z + y] + " at " + x + " / " + y + " / " + z);
+                                            break;
+                                    }
+                                    console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
                                 }
-                                console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
-                            }
+                            }   
                         }
                     }
                     
