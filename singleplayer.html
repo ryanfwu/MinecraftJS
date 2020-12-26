@@ -8,6 +8,7 @@
         <script src="https://cdn.babylonjs.com/babylon.max.js"></script> <!-- BABYLONJS -->
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script> <!-- JQUERY -->
         <script src="./js/perlin.js"></script> <!-- Perlin Noise -->
+        <script src="./js/config.js"></script> <!-- Config -->
     </head>
     <body>
         <canvas id="canvas" onclick="this.requestPointerLock();"></canvas>
@@ -27,15 +28,17 @@
                 
                 var generateChunk = function() {
                     var chunk = [];
-                    
                     for (var x = 1; x <= 16; x++) {
                         var chunkrow = [];
                         for (var z = 1; z <= 16; z++) {
-                            chunkrow.push(perlinGenerate(x, z));
+                            var chunkcolumn = [];
+                            for (var y = 1; y <= perlinGenerate(x, z); y++) {
+                                chunkcolumn.push(blockCodes.grass);
+                            }
+                            chunkrow.push(chunkcolumn);
                         }
                         chunk.push(chunkrow);
                     }
-                    
                     console.log("[LOG] Chunk created with data " + chunk);
                     return chunk;
                 }
@@ -73,17 +76,53 @@
                         }
                     }
                     
-                    var blockTexture = new BABYLON.StandardMaterial("blockTexture", scene);
-                    blockTexture.specularColor = new BABYLON.Color3(0.51, 0.39, 0.22);
+                    var faceUV = new Array(6);
+                    for (var i = 0; i < 6; i++) {
+                        faceUV[i] = new BABYLON.Vector4(i / 6, 0, (i + 1) / 6, 1);
+                    }
+                    
+                    var stoneTexture = new BABYLON.Texture("./assets/textures/stone.png", scene);
+                    var grassTexture = new BABYLON.Texture("./assets/textures/grass_block.png", scene);
+                    var dirtTexture = new BABYLON.Texture("./assets/textures/dirt.png", scene);
+                    var cobblestoneTexture = new BABYLON.Texture("./assets/textures/cobblestone.png", scene);
+                    var planksTexture = new BABYLON.Texture("./assets/textures/planks.png", scene);
+                    var logTexture = new BABYLON.Texture("./assets/textures/log.png", scene);
+                    var bedrockTexture = new BABYLON.Texture("./assets/textures/bedrock.png", scene);
                     
                     for (var x=0; x < terrain.length; x++) {
                         for (var z=0; z < terrain[x].length; z++) {
                             for (var y=0; y < terrain[x][z]; y++) {
-                                console.log("[LOG] Block created at " + x + " / " + z + " with data " + y);
-                                var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1}, scene);
+                                var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
                                 block.position = new BABYLON.Vector3(x, y, z);
-                                block.material = blockTexture;
                                 block.checkCollisions = true;
+                                switch terrain[x][z][y] {
+                                    case blockCodes.air:
+                                        break;
+                                    case blockCodes.stone:
+                                        block.diffuseTexture = stoneTexture;
+                                        break;
+                                    case blockCodes.grass:
+                                        block.diffuseTexture = grassTexture;
+                                        break;
+                                    case blockCodes.dirt:
+                                        block.diffuseTexture = dirtTexture;
+                                        break;
+                                    case blockCodes.cobblestone:
+                                        block.diffuseTexture = cobblestoneTexture;
+                                        break;
+                                    case blockCodes.planks:
+                                        block.diffuseTexture = planksTexture;
+                                        break;
+                                    case blockCodes.log:
+                                        block.diffuseTexture = logTexture;
+                                        break;
+                                    case blockCodes.bedrock:
+                                        block.diffuseTexture = bedrockTexture;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                console.log("[LOG] Block created at " + x + " / " + y + " / " + z);
                             }
                         }
                     }
