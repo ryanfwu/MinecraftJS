@@ -89,13 +89,13 @@
                     var logTexture = new BABYLON.Texture("./assets/textures/log.png", scene);
                     var bedrockTexture = new BABYLON.Texture("./assets/textures/bedrock.png", scene);
                     
-                    for (var x=0; x < terrain.length; x++) {
-                        for (var z=0; z < terrain[x].length; z++) {
-                            for (var y=0; y < terrain[x][z]; y++) {
+                    for (var x=1; x <= 16; x++) {
+                        for (var z=1; z <= 16; z++) {
+                            for (var y=1; y <= 16; y++) {
                                 var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
                                 block.position = new BABYLON.Vector3(x, y, z);
                                 block.checkCollisions = true;
-                                switch (terrain[x][z][y]) {
+                                switch (terrain[256 * x + 16 * z + y]) {
                                     case blockCodes.air:
                                         break;
                                     case blockCodes.stone:
