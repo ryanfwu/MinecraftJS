@@ -121,10 +121,10 @@
                                         block.diffuseTexture = bedrockTexture;
                                         break;
                                     default:
-                                        console.log("[LOG] Error creating texture at " + x + " / " + y + " / " + z);
+                                        console.log("[LOG] Unknown block ID " + terrain[256 * x + 16 * z + y] + " at " + x + " / " + y + " / " + z);
                                         break;
                                 }
-                                console.log("[LOG] Block created at " + x + " / " + y + " / " + z);
+                                console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
                             }
                         }
                     }
