@@ -26,12 +26,12 @@
                     var terrainGeneration = (Math.round (((noise.perlin2(x, z) + 1) * 63 / 2) + 1));
                     console.log("[LOG] Perlin noise generated with data " + terrainGeneration);
                     return terrainGeneration;
-                }
+                };
                 
                 var generateChunk = function() {
                     var chunk = [];
                     for (var x = 1; x <= 16; x++) {
-                        for (var z = 1; z <= 16; z++) 
+                        for (var z = 1; z <= 16; z++) {
                             var noiseGeneration = perlinGenerate(x, z);
                             for (var y = 1; y <= 64; y++) {
                                 if (y <= noiseGeneration) {
@@ -45,9 +45,9 @@
                     }
                     console.log("[LOG] Chunk created");
                     return chunk;
-                }
+                };
                 
-                var createScene = function(terrain){
+                var createScene = function(terrain) {
                     var scene = new BABYLON.Scene(engine);
                     scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
                     scene.gravity = new BABYLON.Vector3(0, -9.81 / engine.getFps().toFixed(), 0);
@@ -64,7 +64,7 @@
                     camera.checkCollisions = true;
                     camera.attachControl(canvas,true);
                     camera.keysUp.push(87);
-                    camera.keysDown.push(83)
+                    camera.keysDown.push(83);
                     camera.keysLeft.push(65);
                     camera.keysRight.push(68);
                     camera.sensibility = 0.01;
@@ -176,7 +176,7 @@
                     music.play();
 
                     return scene;
-                }
+                };
                 
                 var terrain = generateChunk();
                 console.log("[LOG] Terrain generated");
