@@ -39,14 +39,17 @@
                         }
                         chunk.push(chunkrow);
                     }
-                    console.log("[LOG] Chunk created with data " + chunk);
+                    console.log("[LOG] Chunk created");
                     return chunk;
                 }
                 
                 var terrain = generateChunk();
-                console.log("[LOG] Terrain generated with data " + terrain);
+                sessionStorage.setItem("terrain",terrain);
+                console.log("[LOG] Terrain generated");
                 
-                var createScene = function(terrain){
+                var createScene = function(){
+                    var terrain = sessionStorage.getItem("terrain");
+                    
                     var scene = new BABYLON.Scene(engine);
                     scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
                     scene.gravity = new BABYLON.Vector3(0, -9.81 / engine.getFps().toFixed(), 0);
@@ -121,6 +124,7 @@
                                         block.diffuseTexture = bedrockTexture;
                                         break;
                                     default:
+                                        block.diffuseTexture = grassTexture;
                                         console.log("[LOG] Unknown block ID " + terrain[256 * x + 16 * z + y] + " at " + x + " / " + y + " / " + z);
                                         break;
                                 }
@@ -176,7 +180,7 @@
                     return scene;
                 }
               
-                var scene = createScene(terrain);
+                var scene = createScene();
                 
                 engine.runRenderLoop(function(){
                     scene.render();
