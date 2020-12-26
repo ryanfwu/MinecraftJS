@@ -54,7 +54,7 @@
                     
                     var light = new BABYLON.PointLight("light", new BABYLON.Vector3(8, 150, 8), scene);
                     light.intensity = 0.5;
-                    light.radius = 12;
+                    light.radius = 16;
                     
                     var camera = new BABYLON.UniversalCamera('camera', new BABYLON.Vector3(8, 70, 8), scene);
                     camera.setTarget(BABYLON.Vector3.Zero());
@@ -73,7 +73,10 @@
                     window.addEventListener("keyup", jumpCheck, false);
                     function jumpCheck(event) {
                         if (event.keyCode == 32) {
-                            camera.position.y += 3;
+                            var originaly = camera.position.y;
+                            while (camera.position.y <= originaly + 3) {
+                                camera.position.y += 0.1;
+                            }
                         }
                     }
                     
