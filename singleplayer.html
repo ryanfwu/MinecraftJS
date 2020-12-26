@@ -100,27 +100,27 @@
                                 block.position = new BABYLON.Vector3(x, y, z);
                                 block.checkCollisions = true;
                                 switch (terrain[256 * x + 16 * z + y]) {
-                                    case blockCodes.air:
+                                    case (blockCodes.air):
                                         break;
-                                    case blockCodes.stone:
+                                    case (blockCodes.stone):
                                         block.diffuseTexture = stoneTexture;
                                         break;
-                                    case blockCodes.grass:
+                                    case (blockCodes.grass):
                                         block.diffuseTexture = grassTexture;
                                         break;
-                                    case blockCodes.dirt:
+                                    case (blockCodes.dirt):
                                         block.diffuseTexture = dirtTexture;
                                         break;
-                                    case blockCodes.cobblestone:
+                                    case (blockCodes.cobblestone):
                                         block.diffuseTexture = cobblestoneTexture;
                                         break;
-                                    case blockCodes.planks:
+                                    case (blockCodes.planks):
                                         block.diffuseTexture = planksTexture;
                                         break;
-                                    case blockCodes.log:
+                                    case (blockCodes.log):
                                         block.diffuseTexture = logTexture;
                                         break;
-                                    case blockCodes.bedrock:
+                                    case (blockCodes.bedrock):
                                         block.diffuseTexture = bedrockTexture;
                                         break;
                                     default:
