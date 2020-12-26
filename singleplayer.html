@@ -28,9 +28,9 @@
                             chunkrow.push(Math.round(pn.noise(x, z, 0) * 63) + 1);
                         }
                         chunk.push(chunkrow);
-                        console.log("[LOG] Chunk created with data " + chunk);
                     }
                     
+                    console.log("[LOG] Chunk created with data " + chunk);
                     return chunk;
                 }
                 
