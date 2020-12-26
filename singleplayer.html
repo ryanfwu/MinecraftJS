@@ -8,7 +8,6 @@
         <script src="https://cdn.babylonjs.com/babylon.max.js"></script> <!-- BABYLONJS -->
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script> <!-- JQUERY -->
         <script src="./js/perlin.js"></script> <!-- Perlin Noise -->
-        <script src="./js/config.js"></script> <!-- Config -->
     </head>
     <body>
         <canvas id="canvas" onclick="this.requestPointerLock();"></canvas>
@@ -35,10 +34,10 @@
                             var noiseGeneration = perlinGenerate(x, z);
                             for (var y = 1; y <= 64; y++) {
                                 if (y <= noiseGeneration) {
-                                    chunk.push(blockCodes.grass);
+                                    chunk.push(2);
                                 }
                                 else {
-                                    chunk.push(blockCodes.air);
+                                    chunk.push(0);
                                 }
                             }
                         }
@@ -94,33 +93,33 @@
                     for (var x = 1; x <= 16; x++) {
                         for (var z = 1; z <= 16; z++) {
                             for (var y = 1; y <= 64; y++) {
-                                if (terrain[1024 * x + 64 * z + y] != blockCodes.air) {
+                                if (terrain[1024 * x + 64 * z + y] != 0) {
                                     var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
                                     block.position = new BABYLON.Vector3(x, y, z);
                                     block.checkCollisions = true;
                                     
                                     switch (terrain[1024 * x + 64 * z + y]) {
-                                        /* case (blockCodes.air):
+                                        /* case (0):
                                             break; */
-                                        case (blockCodes.stone):
+                                        case (1):
                                             block.diffuseTexture = stoneTexture;
                                             break;
-                                        case (blockCodes.grass):
+                                        case (2):
                                             block.diffuseTexture = grassTexture;
                                             break;
-                                        case (blockCodes.dirt):
+                                        case (3):
                                             block.diffuseTexture = dirtTexture;
                                             break;
-                                        case (blockCodes.cobblestone):
+                                        case (4):
                                             block.diffuseTexture = cobblestoneTexture;
                                             break;
-                                        case (blockCodes.planks):
+                                        case (5):
                                             block.diffuseTexture = planksTexture;
                                             break;
-                                        case (blockCodes.log):
+                                        case (6):
                                             block.diffuseTexture = logTexture;
                                             break;
-                                        case (blockCodes.bedrock):
+                                        case (7):
                                             block.diffuseTexture = bedrockTexture;
                                             break;
                                         default:
