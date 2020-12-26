@@ -37,7 +37,7 @@
                 var terrain = generateChunk();
                 console.log("Terrain generated with data " + terrain);
                 
-                var createScene = function(){
+                var createScene = function(terrain){
                     var scene = new BABYLON.Scene(engine);
                     scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
                     scene.gravity = new BABYLON.Vector3(0, -0.1635, 0);
@@ -76,17 +76,12 @@
                             for (var y; y < terrain[i][j]; y++) {
                                 console.log("[LOG] Block created at " + x + " / " + z + " with data " + y);
                                 var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), 1, scene);
-                                block.position.x = x;
-                                block.position.z = z;
-                                block.position.y = y;
+                                block.position = new Vector3(x, y, z);
                                 block.material = blockTexture;
                                 block.checkCollisions = true;
                             }
                         }
                     }
-                    // var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 100, height: 100});
-                    // ground.material = groundTexture;
-                    // ground.checkCollisions = true;
                     
                     var walk1 = new BABYLON.Sound("Walk1", "./assets/sounds/walk1.ogg", scene);
                     var walk2 = new BABYLON.Sound("Walk2", "./assets/sounds/walk2.ogg", scene);
@@ -135,8 +130,9 @@
                     return scene;
                 }
               
-                var scene = createScene();
-                    engine.runRenderLoop(function(){
+                var scene = createScene(terrain);
+                
+                engine.runRenderLoop(function(){
                     scene.render();
                 });
                 
