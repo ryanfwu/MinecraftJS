@@ -35,7 +35,7 @@
                 }
                 
                 var terrain = generateChunk();
-                console.log("Terrain generated with data " + terrain);
+                console.log("[LOG] Terrain generated with data " + terrain);
                 
                 var createScene = function(terrain){
                     var scene = new BABYLON.Scene(engine);
@@ -71,9 +71,9 @@
                     var blockTexture = new BABYLON.StandardMaterial("blockTexture", scene);
                     blockTexture.specularColor = new BABYLON.Color3(0.51, 0.39, 0.22);
                     
-                    for (var x; x < terrain.length; x++) {
-                        for (var z; z < terrain[i].length; z++) {
-                            for (var y; y < terrain[i][j]; y++) {
+                    for (var x=0; x < terrain.length; x++) {
+                        for (var z=0; z < terrain[i].length; z++) {
+                            for (var y=0; y < terrain[i][j]; y++) {
                                 console.log("[LOG] Block created at " + x + " / " + z + " with data " + y);
                                 var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), 1, scene);
                                 block.position = new Vector3(x, y, z);
