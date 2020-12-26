@@ -20,9 +20,9 @@
                 var generateChunk = function() {
                     var chunk = [];
                     
-                    for (var x = 1; x <= 16) {
+                    for (var x = 1; x <= 16; x++) {
                         var chunkrow = [];
-                        for (var z = 1; z <= 16) {
+                        for (var z = 1; z <= 16; z++) {
                             chunkrow.push(Math.round(noise(x, z) * 63) + 1);
                         }
                         chunk.push(chunkrow);
