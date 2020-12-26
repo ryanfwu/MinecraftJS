@@ -16,7 +16,7 @@
                 var canvas = document.getElementById('canvas');
                 var engine = new BABYLON.Engine(canvas, true);
                 var walkplaying = false;
-                var seed = 10000;
+                var seed = round(Math.random()*100000);
                 var pn = new Perlin(seed);
                 
                 var generateChunk = function() {
