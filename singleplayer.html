@@ -93,42 +93,47 @@
                     for (var x = 1; x <= 16; x++) {
                         for (var z = 1; z <= 16; z++) {
                             for (var y = 1; y <= 64; y++) {
-                                console.log(terrain[1024 * x + 64 * z + y]);
-                                if (terrain[1024 * x + 64 * z + y] != 0) {
+                                var blockid = terrain[1024 * x + 64 * z + y - 1];
+                                
+                                if (blockid != 0) {
                                     var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
                                     block.position = new BABYLON.Vector3(x, y, z);
                                     block.checkCollisions = true;
-                                    
-                                    switch (terrain[1024 * x + 64 * z + y]) {
-                                        /* case (0):
-                                            break; */
-                                        case (1):
-                                            block.diffuseTexture = stoneTexture;
-                                            break;
-                                        case (2):
-                                            block.diffuseTexture = grassTexture;
-                                            break;
-                                        case (3):
-                                            block.diffuseTexture = dirtTexture;
-                                            break;
-                                        case (4):
-                                            block.diffuseTexture = cobblestoneTexture;
-                                            break;
-                                        case (5):
-                                            block.diffuseTexture = planksTexture;
-                                            break;
-                                        case (6):
-                                            block.diffuseTexture = logTexture;
-                                            break;
-                                        case (7):
-                                            block.diffuseTexture = bedrockTexture;
-                                            break;
-                                        default:
-                                            block.diffuseTexture = grassTexture;
-                                            console.log("[LOG] Unknown block ID " + terrain[256 * x + 16 * z + y] + " at " + x + " / " + y + " / " + z);
-                                            break;
-                                    }
+                                }
+                                
+                                if (blockid == 0) {
+                                    console.log("[LOG] Air rendered at " + x + " / " + y + " / " + z);
+                                }
+                                else if (blockid == 1) {
+                                    block.diffuseTexture = stoneTexture;
                                     console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
+                                }
+                                else if (blockid == 2) {
+                                    block.diffuseTexture = grassTexture;
+                                    console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
+                                }
+                                else if (blockid == 3) {
+                                    block.diffuseTexture = dirtTexture;
+                                    console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
+                                }
+                                else if (blockid == 4) {
+                                    block.diffuseTexture = cobblestoneTexture;
+                                    console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
+                                }
+                                else if (blockid == 5) {
+                                    block.diffuseTexture = planksTexture;
+                                    console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
+                                }
+                                else if (blockid == 6) {
+                                    block.diffuseTexture = logTexture;
+                                    console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
+                                }
+                                else if (blockid == 7) {
+                                    block.diffuseTexture = bedrockTexture;
+                                    console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
+                                }
+                                else {
+                                    console.log("[LOG] Unknown block ID " + blockid + " at " + x + " / " + y + " / " + z);
                                 }
                             }   
                         }
