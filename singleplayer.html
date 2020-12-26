@@ -16,8 +16,13 @@
                 var canvas = document.getElementById('canvas');
                 var engine = new BABYLON.Engine(canvas, true);
                 var walkplaying = false;
-                var seed = round(Math.random()*100000);
-                var pn = new Perlin(seed);
+                var seed = Math.random();
+                noise.seed(seed);
+                
+                var perlinGenerate = function(x, z) {
+                    return (Math.round (((perlin2(x, z) + 1) * 63 / 2) + 1));
+                }
+                
                 
                 var generateChunk = function() {
                     var chunk = [];
@@ -25,7 +30,7 @@
                     for (var x = 1; x <= 16; x++) {
                         var chunkrow = [];
                         for (var z = 1; z <= 16; z++) {
-                            chunkrow.push(Math.round(pn.noise(x, z, 0) * 63) + 1);
+                            chunkrow.push(perlinGenerate(x, z));
                         }
                         chunk.push(chunkrow);
                     }
