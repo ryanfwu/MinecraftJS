@@ -75,7 +75,7 @@
                         for (var z=0; z < terrain[x].length; z++) {
                             for (var y=0; y < terrain[x][z]; y++) {
                                 console.log("[LOG] Block created at " + x + " / " + z + " with data " + y);
-                                var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), 1, scene);
+                                var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1}, scene);
                                 block.position = new Vector3(x, y, z);
                                 block.material = blockTexture;
                                 block.checkCollisions = true;
