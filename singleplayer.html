@@ -95,7 +95,7 @@
                                 var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
                                 block.position = new BABYLON.Vector3(x, y, z);
                                 block.checkCollisions = true;
-                                switch terrain[x][z][y] {
+                                switch (terrain[x][z][y]) {
                                     case blockCodes.air:
                                         break;
                                     case blockCodes.stone:
