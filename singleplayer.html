@@ -17,39 +17,37 @@
                 var canvas = document.getElementById('canvas');
                 var engine = new BABYLON.Engine(canvas, true);
                 var walkplaying = false;
+                
                 var seed = Math.random();
                 noise.seed(seed);
                 console.log("[LOG] Creating world with seed " + seed);
                 
                 var perlinGenerate = function(x, z) {
-                    return (Math.round (((noise.perlin2(x, z) + 1) * 63 / 2) + 1));
+                    var terrainGeneration = (Math.round (((noise.perlin2(x, z) + 1) * 63 / 2) + 1));
+                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration);
+                    return terrainGeneration;
                 }
-                
                 
                 var generateChunk = function() {
                     var chunk = [];
                     for (var x = 1; x <= 16; x++) {
-                        var chunkrow = [];
-                        for (var z = 1; z <= 16; z++) {
-                            var chunkcolumn = [];
-                            for (var y = 1; y <= perlinGenerate(x, z); y++) {
-                                chunkcolumn.push(blockCodes.grass);
+                        for (var z = 1; z <= 16; z++) 
+                            var noiseGeneration = perlinGenerate(x, z);
+                            for (var y = 1; y <= 64; y++) {
+                                if (y <= noiseGeneration) {
+                                    chunk.push(blockCodes.grass);
+                                }
+                                else {
+                                    chunk.push(blockCodes.air);
+                                }
                             }
-                            chunkrow.push(chunkcolumn);
                         }
-                        chunk.push(chunkrow);
                     }
                     console.log("[LOG] Chunk created");
                     return chunk;
                 }
                 
-                var terrain = generateChunk();
-                sessionStorage.setItem("terrain",terrain);
-                console.log("[LOG] Terrain generated");
-                
                 var createScene = function(terrain){
-                    // var terrain = sessionStorage.getItem("terrain");
-                    
                     var scene = new BABYLON.Scene(engine);
                     scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
                     scene.gravity = new BABYLON.Vector3(0, -9.81 / engine.getFps().toFixed(), 0);
@@ -93,9 +91,9 @@
                     var logTexture = new BABYLON.Texture("./assets/textures/log.png", scene);
                     var bedrockTexture = new BABYLON.Texture("./assets/textures/bedrock.png", scene);
                     
-                    for (var x=1; x <= 16; x++) {
-                        for (var z=1; z <= 16; z++) {
-                            for (var y=1; y <= 16; y++) {
+                    for (var x = 1; x <= 16; x++) {
+                        for (var z = 1; z <= 16; z++) {
+                            for (var y = 1; y <= 64; y++) {
                                 var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
                                 block.position = new BABYLON.Vector3(x, y, z);
                                 block.checkCollisions = true;
@@ -179,7 +177,10 @@
 
                     return scene;
                 }
-              
+                
+                var terrain = generateChunk();
+                console.log("[LOG] Terrain generated");
+                
                 var scene = createScene(terrain);
                 
                 engine.runRenderLoop(function(){
