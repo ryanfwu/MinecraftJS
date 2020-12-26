@@ -47,8 +47,8 @@
                 sessionStorage.setItem("terrain",terrain);
                 console.log("[LOG] Terrain generated");
                 
-                var createScene = function(){
-                    var terrain = sessionStorage.getItem("terrain");
+                var createScene = function(terrain){
+                    // var terrain = sessionStorage.getItem("terrain");
                     
                     var scene = new BABYLON.Scene(engine);
                     scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
@@ -180,7 +180,7 @@
                     return scene;
                 }
               
-                var scene = createScene();
+                var scene = createScene(terrain);
                 
                 engine.runRenderLoop(function(){
                     scene.render();
