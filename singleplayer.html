@@ -93,6 +93,7 @@
                     for (var x = 1; x <= 16; x++) {
                         for (var z = 1; z <= 16; z++) {
                             for (var y = 1; y <= 64; y++) {
+                                console.log(terrain[1024 * x + 64 * z + y]);
                                 if (terrain[1024 * x + 64 * z + y] != 0) {
                                     var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
                                     block.position = new BABYLON.Vector3(x, y, z);
