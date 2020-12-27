@@ -71,6 +71,12 @@
                     camera.inertia = 0;
                     camera.speed = 0.75;
                     
+                    var light2 = new BABYLON.PointLight("light", new BABYLON.Vector3(8, 70, 8), scene);
+                    light2.intensity = 0.5;
+                    light2.radius = 32;
+                    
+                    light2.parent = camera;
+                    
                     window.addEventListener("keyup", jumpCheck, false);
                     function jumpCheck(event) {
                         if (event.keyCode == 32) {
