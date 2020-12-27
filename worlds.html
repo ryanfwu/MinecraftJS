@@ -8,10 +8,10 @@
     </head>
     <body>
         <input id="seed" type="number" placeholder="Seed" min-value="1" max-value="65536">
-        <input id="multiplayer" type="button" value="Multiplayer">
+        <input id="play" type="button" value="Create world">
         <script>
             document.getElementById("seed").value = Math.round(Math.random()*65535)+1;
-            document.getElementById("multiplayer").onclick = function() {
+            document.getElementById("play").onclick = function() {
                 var seed = document.getElementById("seed").value;
                 window.location.href = "./singleplayer?seed=" + seed;
             }
