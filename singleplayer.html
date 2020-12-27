@@ -18,7 +18,14 @@
                 var engine = new BABYLON.Engine(canvas, true);
                 var walkplaying = false;
                 
-                var seed = Math.random();
+                var url = document.location.href,
+                    params = url.split('?')[1].split('&'),
+                    data = {}, tmp;
+                for (var i = 0, l = params.length; i < l; i++) {
+                     tmp = params[i].split('=');
+                     data[tmp[0]] = tmp[1];
+                }
+                var seed = data.seed;
                 noise.seed(seed);
                 console.log("[LOG] Creating world with seed " + seed);
                 
