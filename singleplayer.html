@@ -127,7 +127,7 @@
                     var bedrockMaterial = new BABYLON.StandardMaterial("bedrock", scene);
                     bedrockTexture.diffuseTexture = bedrockTexture;
                     
-                    for (var i = 0; i <= terrain.length; i++) {
+                    for (var i = 0; i < terrain.length; i++) {
                         var chunkx = terrain[i][0];
                         var chunkz = terrain[i][1];
                         for (var x = 1; x <= 16; x++) {
