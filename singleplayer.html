@@ -227,7 +227,10 @@
                     return scene;
                 };
                 
-                var terrain = [generateChunk(0, 0), generateChunk(0,1)];
+                var terrain = [];
+                terrain.push(generateChunk(0, 0));
+                terrain.push(generateChunk(0, 1));
+                
                 console.log("[LOG] Terrain generated with length " + terrain.length);
                 console.log(terrain);
                 
