@@ -120,18 +120,14 @@
                     var bedrockMaterial = new BABYLON.StandardMaterial("bedrock", scene);
                     bedrockTexture.diffuseTexture = bedrockTexture;
                     
-                    var terrainx = 16;
-                    var terrainz = 16;
-                    var terrainy = 64;
-                    
                     for (var i = 0; i <= terrain.length; i++) {
                         var chunkx = terrain[i][0];
                         var chunkz = terrain[i][1];
-                        for (var x = 1; x <= terrainx; x++) {
-                            for (var z = 1; z <= terrainz; z++) {
-                                for (var y = 1; y <= terrainy; y++) {
-                                    var blockid = terrain[terrainz * terrainy * (x - 1) + terrainy * (z - 1) + (y - 1) + 2]; // +2 since first 2 in chunk are chunk coordinates
-                                    document.getElementById("loading").innerHTML = ("Generating Terrain<br>" + Math.ceil(blockid*100/(terrainx*terrainz*terrainy)) + "%");
+                        for (var x = 1; x <= 16; x++) {
+                            for (var z = 1; z <= 16; z++) {
+                                for (var y = 1; y <= 64; y++) {
+                                    var blockid = terrain[1024 * (x - 1) + 64 * (z - 1) + y + 1]; // (y - 1) + 2 = y + 1 since first 2 in chunk are chunk coordinates
+                                    document.getElementById("loading").innerHTML = ("Generating Terrain<br>" + Math.ceil(blockid*100/((terrain.length)*16384)) + "%");
 
                                     if (blockid != 0) {
                                         var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
