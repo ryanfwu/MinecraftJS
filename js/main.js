@@ -1,5 +1,5 @@
 document.getElementById("singleplayer").onclick = function playSingleplayer() {
-    window.location.href = "./singleplayer";
+    window.location.href = "./worlds";
 }
 
 document.getElementById("multiplayer").onclick = function playMultiplayer() {
