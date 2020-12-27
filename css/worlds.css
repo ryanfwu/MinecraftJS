@@ -2,7 +2,7 @@ body {
     background-color:black;
 }
 
-input{type=button} {
+input[type=button] {
     position:fixed;
     display:block;
     top:15em;
@@ -20,11 +20,11 @@ input{type=button} {
     top:50%;
 }
 
-input{type=button}:active {
+input[type=button]:active {
     background-color:yellow;
 }
 
-input{type=text} {
+input[type=text] {
     position:fixed;
     font-family:'Minecraftia';
     font-size:30px;
