@@ -87,12 +87,32 @@
                     }
                     
                     var stoneTexture = new BABYLON.Texture("./assets/textures/stone.png", scene);
+                    var stoneMaterial = new BABYLON.StandardMaterial("stone", scene);
+                    stoneMaterial.diffuseTexture = stoneTexture;
+                    
                     var grassTexture = new BABYLON.Texture("./assets/textures/grass_block.png", scene);
+                    var grassMaterial = new BABYLON.StandardMaterial("grass", scene);
+                    grassMaterial.diffuseTexture = grassTexture;
+                    
                     var dirtTexture = new BABYLON.Texture("./assets/textures/dirt.png", scene);
+                    var dirtMaterial = new BABYLON.StandardMaterial("dirt", scene);
+                    dirtMaterial.diffuseTexture = dirtTexture;
+                    
                     var cobblestoneTexture = new BABYLON.Texture("./assets/textures/cobblestone.png", scene);
+                    var cobblestoneMaterial = new BABYLON.StandardMaterial("cobblestone", scene);
+                    cobblestoneMaterial.diffuseTexture = cobblestoneTexture;
+                    
                     var planksTexture = new BABYLON.Texture("./assets/textures/planks.png", scene);
+                    var planksMaterial = new BABYLON.StandardMaterial("planks", scene);
+                    planksMaterial.diffuseTexture = planksTexture;
+                    
                     var logTexture = new BABYLON.Texture("./assets/textures/log.png", scene);
+                    var logMaterial = new BABYLON.StandardMaterial("log", scene);
+                    logTexture.diffuseTexture = logTexture;
+                    
                     var bedrockTexture = new BABYLON.Texture("./assets/textures/bedrock.png", scene);
+                    var bedrockMaterial = new BABYLON.StandardMaterial("bedrock", scene);
+                    bedrockTexture.diffuseTexture = bedrockTexture;
                     
                     for (var x = 1; x <= 16; x++) {
                         for (var z = 1; z <= 16; z++) {
@@ -110,31 +130,31 @@
                                     console.log("[LOG] Air rendered at " + x + " / " + y + " / " + z);
                                 }
                                 else if (blockid == 1) {
-                                    block.diffuseTexture = stoneTexture;
+                                    block.material = stoneMaterial;
                                     console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
                                 }
                                 else if (blockid == 2) {
-                                    block.diffuseTexture = grassTexture;
+                                    block.material = grassMaterial;
                                     console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
                                 }
                                 else if (blockid == 3) {
-                                    block.diffuseTexture = dirtTexture;
+                                    block.material = dirtMaterial;
                                     console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
                                 }
                                 else if (blockid == 4) {
-                                    block.diffuseTexture = cobblestoneTexture;
+                                    block.material = cobblestoneMaterial;
                                     console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
                                 }
                                 else if (blockid == 5) {
-                                    block.diffuseTexture = planksTexture;
+                                    block.material = planksMaterial;
                                     console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
                                 }
                                 else if (blockid == 6) {
-                                    block.diffuseTexture = logTexture;
+                                    block.material = logMaterial;
                                     console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
                                 }
                                 else if (blockid == 7) {
-                                    block.diffuseTexture = bedrockTexture;
+                                    block.material = bedrockMaterial;
                                     console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z);
                                 }
                                 else {
