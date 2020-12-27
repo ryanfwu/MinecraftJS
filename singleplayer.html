@@ -25,12 +25,13 @@
                      tmp = params[i].split('=');
                      data[tmp[0]] = tmp[1];
                 }
+                
                 var seed = data.seed;
-                noise.seed(seed);
+                var pn = new Perlin(seed);
                 console.log("[LOG] Creating world with seed " + seed);
                 
                 var perlinGenerate = function(x, z) {
-                    var terrainGeneration = (Math.round (((noise.perlin2(x, z) + 1) * 63 / 2) + 1));
+                    var terrainGeneration = (Math.round (pn.noise(x, z, 0) * 63)) + 1;
                     console.log("[LOG] Perlin noise generated with data " + terrainGeneration);
                     return terrainGeneration;
                 };
