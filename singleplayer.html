@@ -39,7 +39,7 @@
                     var chunk = [chunkx, chunky];
                     for (var x = 1; x <= 16; x++) {
                         for (var z = 1; z <= 16; z++) {
-                            var noiseGeneration = perlinGenerate(x, z);
+                            var noiseGeneration = perlinGenerate(x + 16*chunkx, z + 16*chunky);
                             for (var y = 1; y <= 64; y++) {
                                 if (y <= noiseGeneration) {
                                     chunk.push(2);
