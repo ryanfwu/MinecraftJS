@@ -11,6 +11,7 @@
     </head>
     <body>
         <canvas id="canvas" onclick="this.requestPointerLock();"></canvas>
+        <div id="loading"></div>
         <script>
             window.addEventListener('DOMContentLoaded', function(){
                 var canvas = document.getElementById('canvas');
@@ -97,6 +98,7 @@
                         for (var z = 1; z <= 16; z++) {
                             for (var y = 1; y <= 64; y++) {
                                 var blockid = terrain[1024 * (x - 1) + 64 * (z - 1) + (y - 1)];
+                                document.getElementById("loading").innerHTML = ("Generating Terrain<br>" + ceil(blockid*100/16384) + "%");
                                 
                                 if (blockid != 0) {
                                     var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
@@ -141,6 +143,8 @@
                             }   
                         }
                     }
+                    
+                    document.getElementById("loading").innerHTML = "";
                     
                     var walk1 = new BABYLON.Sound("Walk1", "./assets/sounds/walk1.ogg", scene);
                     var walk2 = new BABYLON.Sound("Walk2", "./assets/sounds/walk2.ogg", scene);
