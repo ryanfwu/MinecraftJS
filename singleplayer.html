@@ -134,7 +134,7 @@
                         var chunkx = terrain[i][0];
                         var chunkz = terrain[i][1];
                         var camerax = Math.floor(camera.position.x / 16);
-                        var cameraz = Math.floor(camera.position.y / 16);
+                        var cameraz = Math.floor(camera.position.z / 16);
                         
                         if ((Math.abs(chunkx - camerax) < renderdistance) && (Math.abs(chunkz - cameraz) < renderdistance)) {
                             for (var x = 1; x <= 16; x++) {
