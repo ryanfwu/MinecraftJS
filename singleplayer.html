@@ -141,48 +141,49 @@
                                 for (var z = 1; z <= 16; z++) {
                                     for (var y = 1; y <= 64; y++) {
                                         var blockid = terrain[1024 * (x - 1) + 64 * (z - 1) + y + 1]; // (y - 1) + 2 = y + 1 since first 2 in chunk are chunk coordinates
-                                        document.getElementById("loading").innerHTML = ("Generating Terrain<br>" + Math.ceil(blockid*100/((terrain.length)*16384)) + "%");
+                                        document.getElementById("loading").innerHTML = ("Generating Terrain<br>" + (Math.ceil(blockid*100/((terrain.length)*16384))) + "%");
+                                        if !(((terrain[1024 * (x) + 64 * (z - 1) + y + 1] == 0) && (terrain[1024 * (x - 2) + 64 * (z - 1) + y + 1] == 0)) && ((terrain[1024 * (x - 1) + 64 * (z - 1) + y + 2] == 0 && terrain[1024 * (x - 1) + 64 * (z - 1) + y] == 0) && (terrain[1024 * (x - 1) + 64 * (z) + y + 1] == 0 && terrain[1024 * (x - 1) + 64 * (z - 2) + y + 1]))) {
+                                            if (blockid != 0) {
+                                                var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
+                                                block.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
+                                                block.checkCollisions = true;
+                                            }
 
-                                        if (blockid != 0) {
-                                            var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
-                                            block.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
-                                            block.checkCollisions = true;
-                                        }
-
-                                        if (blockid == 0) {
-                                            console.log("[LOG] Air rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
-                                        }
-                                        else if (blockid == 1) {
-                                            block.material = stoneMaterial;
-                                            console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
-                                        }
-                                        else if (blockid == 2) {
-                                            block.material = grassMaterial;
-                                            console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
-                                        }
-                                        else if (blockid == 3) {
-                                            block.material = dirtMaterial;
-                                            console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
-                                        }
-                                        else if (blockid == 4) {
-                                            block.material = cobblestoneMaterial;
-                                            console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
-                                        }
-                                        else if (blockid == 5) {
-                                            block.material = planksMaterial;
-                                            console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
-                                        }
-                                        else if (blockid == 6) {
-                                            block.material = logMaterial;
-                                            console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
-                                        }
-                                        else if (blockid == 7) {
-                                            block.material = bedrockMaterial;
-                                            console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
-                                        }
-                                        else {
-                                            block.material = grassMaterial;
-                                            console.log("[LOG] Unknown block ID " + blockid + " at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            if (blockid == 0) {
+                                                console.log("[LOG] Air rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            }
+                                            else if (blockid == 1) {
+                                                block.material = stoneMaterial;
+                                                console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            }
+                                            else if (blockid == 2) {
+                                                block.material = grassMaterial;
+                                                console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            }
+                                            else if (blockid == 3) {
+                                                block.material = dirtMaterial;
+                                                console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            }
+                                            else if (blockid == 4) {
+                                                block.material = cobblestoneMaterial;
+                                                console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            }
+                                            else if (blockid == 5) {
+                                                block.material = planksMaterial;
+                                                console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            }
+                                            else if (blockid == 6) {
+                                                block.material = logMaterial;
+                                                console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            }
+                                            else if (blockid == 7) {
+                                                block.material = bedrockMaterial;
+                                                console.log("[LOG] Block rendered at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            }
+                                            else {
+                                                block.material = grassMaterial;
+                                                console.log("[LOG] Unknown block ID " + blockid + " at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
+                                            }
                                         }
                                     }   
                                 }
