@@ -11,7 +11,10 @@
     </head>
     <body>
         <canvas id="canvas" onclick="this.requestPointerLock();"></canvas>
-        <div id="loading"></div>
+        <div id="loading">
+            <p>Generating Terrain</p>
+            <p>0%</p>
+        </div>
         <script>
             window.addEventListener('DOMContentLoaded', function(){
                 var canvas = document.getElementById('canvas');
@@ -141,7 +144,7 @@
                                 for (var z = 1; z <= 16; z++) {
                                     for (var y = 1; y <= 64; y++) {
                                         var blockid = terrain[1024 * (x - 1) + 64 * (z - 1) + y + 1]; // (y - 1) + 2 = y + 1 since first 2 in chunk are chunk coordinates
-                                        document.getElementById("loading").innerHTML = ("Generating Terrain<br>" + (Math.ceil(blockid*100/((terrain.length)*16384))) + "%");
+                                        document.getElementById("loading").innerHTML = ("<p>Generating Terrain</p><p>" + (Math.ceil(blockid*100/((terrain.length)*16384))) + "%</p>");
                                         if (!(((terrain[1024 * (x) + 64 * (z - 1) + y + 1] == 0) && (terrain[1024 * (x - 2) + 64 * (z - 1) + y + 1] == 0)) && ((terrain[1024 * (x - 1) + 64 * (z - 1) + y + 2] == 0 && terrain[1024 * (x - 1) + 64 * (z - 1) + y] == 0) && (terrain[1024 * (x - 1) + 64 * (z) + y + 1] == 0 && terrain[1024 * (x - 1) + 64 * (z - 2) + y + 1])))) {
                                             if (blockid != 0) {
                                                 var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
@@ -194,6 +197,7 @@
                         }
                     }
                     document.getElementById("loading").innerHTML = "";
+                    console.log("[LOG] Erased progress bar");
                     
                     var walk1 = new BABYLON.Sound("Walk1", "./assets/sounds/walk1.ogg", scene);
                     var walk2 = new BABYLON.Sound("Walk2", "./assets/sounds/walk2.ogg", scene);
