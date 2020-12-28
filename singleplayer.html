@@ -188,8 +188,10 @@
                                 }
                             }
                         }
+                        else {
+                            console.log("[LOG] Render skipped for chunk " + chunkx + " / " + chunkz + " @ " + camerax + " / " + cameraz);
+                        }
                     }
-                    
                     document.getElementById("loading").innerHTML = "";
                     
                     var walk1 = new BABYLON.Sound("Walk1", "./assets/sounds/walk1.ogg", scene);
