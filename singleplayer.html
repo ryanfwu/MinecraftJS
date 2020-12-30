@@ -84,8 +84,6 @@
                 var light = new BABYLON.PointLight("light", new BABYLON.Vector3(8, 150, 8), scene);
                 light.intensity = 0.5;
                 light.radius = 16;
-                
-                let delay = BABYLON.Scene.LongPressDelay = 2000;
 
                 var camera = new BABYLON.UniversalCamera('camera', new BABYLON.Vector3(8, 70, 8), scene);
                 camera.setTarget(BABYLON.Vector3.Zero());
@@ -171,9 +169,10 @@
                                             block.checkCollisions = true;
                                             
                                             block.actionManager = new BABYLON.ActionManager(scene);
-                                            block.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnLongPressTrigger,
+                                            block.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger,
                                                 function() {
                                                     terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 1] = 0;
+                                                    console.log("[LOG] Block broken at " + x " / " + y + " / " + z);
                                                 }
                                             ));
                                         }
