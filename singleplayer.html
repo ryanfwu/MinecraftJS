@@ -169,6 +169,8 @@
                                             var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
                                             block.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             block.checkCollisions = true;
+                                            
+                                            block.actionManager = new BABYLON.ActionManage(scene);
                                             block.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnLongPressTrigger,
                                                 function() {
                                                     terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 1] = 0;
