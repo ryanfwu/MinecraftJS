@@ -32,17 +32,29 @@
             var pn = new Perlin(seed);
             console.log("[LOG] Creating world with seed " + seed);
 
-            var perlinGenerate = function(x, z) {
-                var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 63)) + 1;
-                console.log("[LOG] Perlin noise generated with data " + terrainGeneration);
-                return terrainGeneration;
+            var perlinGenerate = function(x, z, biome) {
+                if (biome == 1) { // Plains
+                    var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 31)) + 1;
+                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in plains biome");
+                    return terrainGeneration;
+                }
+                else if (biome == 3) { // Mountains
+                    var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 63)) + 1;
+                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in mountains biome");
+                    return terrainGeneration;
+                }
+                else {
+                    var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 31)) + 1;
+                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in unknown biome");
+                    return terrainGeneration;
+                }
             };
 
             var generateChunk = function(chunkx, chunky) {
                 var chunk = [chunkx, chunky];
                 for (var x = 1; x <= 16; x++) {
                     for (var z = 1; z <= 16; z++) {
-                        var noiseGeneration = perlinGenerate(x + 16*chunkx, z + 16*chunky);
+                        var noiseGeneration = perlinGenerate(x + 16*chunkx, z + 16*chunky, 1);
                         for (var y = 1; y <= 64; y++) {
                             if (y <= noiseGeneration-4) {
                                 chunk.push(1);
