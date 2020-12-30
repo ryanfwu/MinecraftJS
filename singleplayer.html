@@ -33,7 +33,7 @@
             console.log("[LOG] Creating world with seed " + seed);
 
             var perlinGenerate = function(x, z) {
-                var terrainGeneration = (Math.round (pn.noise(x, z, 0) * 63)) + 1;
+                var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 63)) + 1;
                 console.log("[LOG] Perlin noise generated with data " + terrainGeneration);
                 return terrainGeneration;
             };
@@ -245,9 +245,7 @@
                 return scene;
             };
 
-            var terrain = [generateChunk(-1, -1), generateChunk(-1, 0), generateChunk(-1, 1)
-                         , generateChunk(0, -1), generateChunk(0, 0), generateChunk(0, 1)
-                         , generateChunk(1, -1), generateChunk(1, 0), generateChunk(1, 1)];
+            var terrain = [generateChunk(0, 0)];
 
             console.log("[LOG] Terrain generated with length " + terrain.length);
             console.log(terrain);
