@@ -183,7 +183,237 @@
                             for (var z = 1; z <= 16; z++) {
                                 for (var y = 1; y <= 64; y++) {
                                     var blockid = terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 1]; // (y - 1) + 2 = y + 1 since first 2 in chunk are chunk coordinates
-                                    // document.getElementById("loading").innerHTML = ("<p>Generating Terrain</p><p>" + (Math.ceil(blockid*100/((terrain.length)*16384))) + "%</p>");
+                                    if (blockid != 0) {
+                                        if (terrain[1024 * (x - 1) + 64 * (z - 2) + y + 1] == 0) { // 1, Negative Z
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-1", {size: 1, sideOrientation: 1}, scene);
+                                            plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
+                                            plane.checkCollisions = true;
+                                            plane.actionManager = new BABYLON.ActionManager(scene);
+                                            plane.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger,
+                                                function() {
+                                                    terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 1] = 0;
+                                                    console.log("[LOG] Block broken at " + x + " / " + y + " / " + z);
+                                                }
+                                            ));
+
+                                            switch (blockid):
+                                                case 1:
+                                                    plane.material = stoneMaterial;
+                                                    break;
+                                                case 2:
+                                                    plane.material = grassSide;
+                                                    break;
+                                                case 3:
+                                                    plane.material = dirtMaterial;
+                                                    break;
+                                                case 4:
+                                                    plane.material = cobblestoneMaterial;
+                                                    break;
+                                                case 5:
+                                                    plane.material = planksMaterial;
+                                                    break;
+                                                case 6:
+                                                    plane.material = logSide;
+                                                    break;
+                                                case 7:
+                                                    plane.material = bedrockMaterial;
+                                                    break;
+                                                default:
+                                                    plane.material = stoneMaterial;
+                                        }
+                                        
+                                        if (terrain[1024 * (x) + 64 * (z - 1) + y + 1] == 0) { // 2, Positive X
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-2", {size: 1, sideOrientation: 2}, scene);
+                                            plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
+                                            plane.checkCollisions = true;
+                                            plane.actionManager = new BABYLON.ActionManager(scene);
+                                            plane.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger,
+                                                function() {
+                                                    terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 1] = 0;
+                                                    console.log("[LOG] Block broken at " + x + " / " + y + " / " + z);
+                                                }
+                                            ));
+
+                                            switch (blockid):
+                                                case 1:
+                                                    plane.material = stoneMaterial;
+                                                    break;
+                                                case 2:
+                                                    plane.material = grassSide;
+                                                    break;
+                                                case 3:
+                                                    plane.material = dirtMaterial;
+                                                    break;
+                                                case 4:
+                                                    plane.material = cobblestoneMaterial;
+                                                    break;
+                                                case 5:
+                                                    plane.material = planksMaterial;
+                                                    break;
+                                                case 6:
+                                                    plane.material = logSide;
+                                                    break;
+                                                case 7:
+                                                    plane.material = bedrockMaterial;
+                                                    break;
+                                                default:
+                                                    plane.material = stoneMaterial;
+                                        }
+                                                
+                                        if (terrain[1024 * (x - 2) + 64 * (z - 1) + y + 1] == 0) { // 3, Negative X
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-3", {size: 1, sideOrientation: 3}, scene);
+                                            plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
+                                            plane.checkCollisions = true;
+                                            plane.actionManager = new BABYLON.ActionManager(scene);
+                                            plane.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger,
+                                                function() {
+                                                    terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 1] = 0;
+                                                    console.log("[LOG] Block broken at " + x + " / " + y + " / " + z);
+                                                }
+                                            ));
+
+                                            switch (blockid):
+                                                case 1:
+                                                    plane.material = stoneMaterial;
+                                                    break;
+                                                case 2:
+                                                    plane.material = grassSide;
+                                                    break;
+                                                case 3:
+                                                    plane.material = dirtMaterial;
+                                                    break;
+                                                case 4:
+                                                    plane.material = cobblestoneMaterial;
+                                                    break;
+                                                case 5:
+                                                    plane.material = planksMaterial;
+                                                    break;
+                                                case 6:
+                                                    plane.material = logSide;
+                                                    break;
+                                                case 7:
+                                                    plane.material = bedrockMaterial;
+                                                    break;
+                                                default:
+                                                    plane.material = stoneMaterial;
+                                        }
+                                                
+                                        if (terrain[1024 * (x - 1) + 64 * (z) + y + 1] == 0) { // 0, Positive Z
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-0", {size: 1, sideOrientation: 0}, scene);
+                                            plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
+                                            plane.checkCollisions = true;
+                                            plane.actionManager = new BABYLON.ActionManager(scene);
+                                            plane.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger,
+                                                function() {
+                                                    terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 1] = 0;
+                                                    console.log("[LOG] Block broken at " + x + " / " + y + " / " + z);
+                                                }
+                                            ));
+
+                                            switch (blockid):
+                                                case 1:
+                                                    plane.material = stoneMaterial;
+                                                    break;
+                                                case 2:
+                                                    plane.material = grassSide;
+                                                    break;
+                                                case 3:
+                                                    plane.material = dirtMaterial;
+                                                    break;
+                                                case 4:
+                                                    plane.material = cobblestoneMaterial;
+                                                    break;
+                                                case 5:
+                                                    plane.material = planksMaterial;
+                                                    break;
+                                                case 6:
+                                                    plane.material = logSide;
+                                                    break;
+                                                case 7:
+                                                    plane.material = bedrockMaterial;
+                                                    break;
+                                                default:
+                                                    plane.material = stoneMaterial;
+                                        }
+                                                
+                                        if (terrain[1024 * (x - 1) + 64 * (z - 1) + y + 2] == 0) { // 4, Positive Y
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-4", {size: 1, sideOrientation: 4}, scene);
+                                            plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
+                                            plane.checkCollisions = true;
+                                            plane.actionManager = new BABYLON.ActionManager(scene);
+                                            plane.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger,
+                                                function() {
+                                                    terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 1] = 0;
+                                                    console.log("[LOG] Block broken at " + x + " / " + y + " / " + z);
+                                                }
+                                            ));
+
+                                            switch (blockid):
+                                                case 1:
+                                                    plane.material = stoneMaterial;
+                                                    break;
+                                                case 2:
+                                                    plane.material = grassTop;
+                                                    break;
+                                                case 3:
+                                                    break;
+                                                    plane.material = dirtMaterial;
+                                                case 4:
+                                                    plane.material = cobblestoneMaterial;
+                                                    break;
+                                                case 5:
+                                                    plane.material = planksMaterial;
+                                                    break;
+                                                case 6:
+                                                    plane.material = logTop;
+                                                    break;
+                                                case 7:
+                                                    plane.material = bedrockMaterial;
+                                                    break;
+                                                default:
+                                                    plane.material = stoneMaterial;;
+                                        }
+                                                
+                                        if (terrain[1024 * (x - 1) + 64 * (z - 1) + y] == 0) { // 5, Negative Y
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-5", {size: 1, sideOrientation: 5}, scene);
+                                            plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
+                                            plane.checkCollisions = true;
+                                            plane.actionManager = new BABYLON.ActionManager(scene);
+                                            plane.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger,
+                                                function() {
+                                                    terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 1] = 0;
+                                                    console.log("[LOG] Block broken at " + x + " / " + y + " / " + z);
+                                                }
+                                            ));
+
+                                            switch (blockid):
+                                                case 1:
+                                                    plane.material = stoneMaterial;
+                                                    break;
+                                                case 2:
+                                                    plane.material = dirtMaterial; // Bottom of grass block is dirt
+                                                    break;
+                                                case 3:
+                                                    plane.material = dirtMaterial;
+                                                    break;
+                                                case 4:
+                                                    plane.material = cobblestoneMaterial;
+                                                    break;
+                                                case 5:
+                                                    plane.material = planksMaterial;
+                                                    break;
+                                                case 6:
+                                                    plane.material = logTop;
+                                                    break;
+                                                case 7:
+                                                    plane.material = bedrockMaterial;
+                                                    break;
+                                                default:
+                                                    plane.material = stoneMaterial;
+                                        }
+                                    }
+                                    
+                                    /* document.getElementById("loading").innerHTML = ("<p>Generating Terrain</p><p>" + (Math.ceil(blockid*100/((terrain.length)*16384))) + "%</p>");
                                     if (!(((terrain[1024 * (x) + 64 * (z - 1) + y + 1] == 0) && (terrain[1024 * (x - 2) + 64 * (z - 1) + y + 1] == 0)) && ((terrain[1024 * (x - 1) + 64 * (z - 1) + y + 2] == 0 && terrain[1024 * (x - 1) + 64 * (z - 1) + y] == 0) && (terrain[1024 * (x - 1) + 64 * (z) + y + 1] == 0 && terrain[1024 * (x - 1) + 64 * (z - 2) + y + 1])))) {
                                         if (blockid != 0) {
                                             var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
@@ -234,8 +464,8 @@
                                             block.material = grassMaterial;
                                             console.log("[LOG] Unknown block ID " + blockid + " at " + x + " / " + y + " / " + z + " @ " + chunkx + " / " + chunkz);
                                         }
-                                    }
-                                }   
+                                    } */
+                                }
                             }
                         }
                     }
