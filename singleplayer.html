@@ -232,6 +232,9 @@
                                                     plane.material = stoneMaterial;
                                             }
                                         }
+                                        else {
+                                            console.log("[LOG] Skip side render with value " + terrain[i][1024 * (x - 1) + 64 * (z - 2) + y + 1]);
+                                        }
                                         
                                         if (terrain[i][1024 * (x) + 64 * (z - 1) + y + 1] == 0) { // 2, Positive X
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#2 rendered @ " + chunkx + " / " + chunkz);
@@ -271,6 +274,9 @@
                                                 default:
                                                     plane.material = stoneMaterial;
                                             }
+                                        }
+                                        else {
+                                            console.log("[LOG] Skip side render with value " + terrain[i][1024 * (x) + 64 * (z - 1) + y + 1]);
                                         }
                                                 
                                         if (terrain[i][1024 * (x - 2) + 64 * (z - 1) + y + 1] == 0) { // 3, Negative X
@@ -312,6 +318,9 @@
                                                     plane.material = stoneMaterial;
                                             }
                                         }
+                                        else {
+                                            console.log("[LOG] Skip side render with value " + terrain[i][1024 * (x - 2) + 64 * (z - 1) + y + 1]);
+                                        }
                                                 
                                         if (terrain[i][1024 * (x - 1) + 64 * (z) + y + 1] == 0) { // 0, Positive Z
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#0 rendered @ " + chunkx + " / " + chunkz);
@@ -351,6 +360,9 @@
                                                 default:
                                                     plane.material = stoneMaterial;
                                             }
+                                        }
+                                        else {
+                                            console.log("[LOG] Skip side render with value " + terrain[i][1024 * (x - 1) + 64 * (z) + y + 1]);
                                         }
                                                 
                                         if (terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 2] == 0) { // 4, Positive Y
@@ -392,6 +404,9 @@
                                                     plane.material = stoneMaterial;
                                             }
                                         }
+                                        else {
+                                            console.log("[LOG] Skip side render with value " + terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 2]);
+                                        }
                                                 
                                         if (terrain[i][1024 * (x - 1) + 64 * (z - 1) + y] == 0) { // 5, Negative Y
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#5 rendered @ " + chunkx + " / " + chunkz);
@@ -432,10 +447,13 @@
                                                     plane.material = stoneMaterial;
                                             }
                                         }
+                                        else {
+                                            console.log("[LOG] Skip side render with value " + terrain[i][1024 * (x - 1) + 64 * (z - 1) + y]);
+                                        }
                                     }
                                     
                                     /* document.getElementById("loading").innerHTML = ("<p>Generating Terrain</p><p>" + (Math.ceil(blockid*100/((terrain.length)*16384))) + "%</p>");
-                                    if (!(((terrain[1024 * (x) + 64 * (z - 1) + y + 1] == 0) && (terrain[1024 * (x - 2) + 64 * (z - 1) + y + 1] == 0)) && ((terrain[1024 * (x - 1) + 64 * (z - 1) + y + 2] == 0 && terrain[1024 * (x - 1) + 64 * (z - 1) + y] == 0) && (terrain[1024 * (x - 1) + 64 * (z) + y + 1] == 0 && terrain[1024 * (x - 1) + 64 * (z - 2) + y + 1])))) {
+                                    if (!(((terrain[i][1024 * (x) + 64 * (z - 1) + y + 1] == 0) && (terrain[i][1024 * (x - 2) + 64 * (z - 1) + y + 1] == 0)) && ((terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 2] == 0 && terrain[i][1024 * (x - 1) + 64 * (z - 1) + y] == 0) && (terrain[i][1024 * (x - 1) + 64 * (z) + y + 1] == 0 && terrain[i][1024 * (x - 1) + 64 * (z - 2) + y + 1])))) {
                                         if (blockid != 0) {
                                             var block = BABYLON.MeshBuilder.CreateBox(("block-" + x + "-" + z + "-" + y), {size: 1, faceUV: faceUV, wrap: true}, scene);
                                             block.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
