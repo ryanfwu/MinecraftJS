@@ -111,14 +111,11 @@
                 function jumpCheck(event) {
                     if (event.keyCode == 32) {
                         var originaly = camera.position.y;
-                        setInterval(function() {
-                            if (camera.position.y <= originaly + 1.5) {
-                                camera.position.y += 0.1;
-                            }
-                            else {
-                                break;
-                            }
-                        },50);
+                        while (camera.position.y <= originaly + 1.5) {
+                            setTimeout(function() {
+                                camera.position.y += 0.05;
+                            }, 25);
+                        }
                     }
                 }
 
