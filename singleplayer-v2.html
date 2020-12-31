@@ -100,6 +100,8 @@
             };
 
             var createScene = function(terrain) {
+                console.log(terrain);
+                
                 var scene = new BABYLON.Scene(engine);
                 scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
                 scene.gravity = new BABYLON.Vector3(0, -9.81 / engine.getFps().toFixed(), 0);
