@@ -195,7 +195,7 @@
                                         console.log("[LOG] Block " + x + " / " + y + " / " + z + " registered @ " + chunkx + " / " + chunkz);
                                         if (terrain[i][1024 * (x - 1) + 64 * (z - 2) + y + 1] == 0 || terrain[i][1024 * (x - 1) + 64 * (z - 2) + y + 1] == undefined) { // 1, Negative Z
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#1 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-1", {size: 1, sideOrientation: 1}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-Z", {size: 1, sideOrientation: 1}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -238,7 +238,7 @@
                                         
                                         if (terrain[i][1024 * (x) + 64 * (z - 1) + y + 1] == 0 || terrain[i][1024 * (x) + 64 * (z - 1) + y + 1] == undefined) { // 2, Positive X
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#2 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-2", {size: 1, sideOrientation: 2}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "+X", {size: 1, sideOrientation: 2}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -281,7 +281,7 @@
                                                 
                                         if (terrain[i][1024 * (x - 2) + 64 * (z - 1) + y + 1] == 0 || terrain[i][1024 * (x - 2) + 64 * (z - 1) + y + 1] == undefined) { // 3, Negative X
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#3 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-3", {size: 1, sideOrientation: 3}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-X", {size: 1, sideOrientation: 3}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -324,7 +324,7 @@
                                                 
                                         if (terrain[i][1024 * (x - 1) + 64 * (z) + y + 1] == 0 || terrain[i][1024 * (x - 1) + 64 * (z) + y + 1] == undefined) { // 0, Positive Z
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#0 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-0", {size: 1, sideOrientation: 0}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "+Z", {size: 1, sideOrientation: 0}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -367,7 +367,7 @@
                                                 
                                         if (terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 2] == 0 || terrain[i][1024 * (x - 1) + 64 * (z - 1) + y + 2] == undefined) { // 4, Positive Y
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#4 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-4", {size: 1, sideOrientation: 4}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "+Y", {size: 1, sideOrientation: 4}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -410,7 +410,7 @@
                                                 
                                         if (terrain[i][1024 * (x - 1) + 64 * (z - 1) + y] == 0 || terrain[i][1024 * (x - 1) + 64 * (z - 1) + y] == undefined) { // 5, Negative Y
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#5 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-5", {size: 1, sideOrientation: 5}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-Y", {size: 1, sideOrientation: 5}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
