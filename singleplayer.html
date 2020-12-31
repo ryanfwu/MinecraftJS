@@ -164,7 +164,7 @@
 
                 var logTexture = new BABYLON.Texture("./assets/textures/log.png", scene);
                 var logMaterial = new BABYLON.StandardMaterial("log", scene);
-                logTexture.diffuseTexture = logTexture;
+                logMaterial.diffuseTexture = logTexture;
 
                 var bedrockTexture = new BABYLON.Texture("./assets/textures/bedrock.png", scene);
                 var bedrockMaterial = new BABYLON.StandardMaterial("bedrock", scene);
