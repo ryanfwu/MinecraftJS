@@ -204,7 +204,7 @@
                                                 }
                                             ));
 
-                                            switch (blockid):
+                                            switch (blockid) {
                                                 case 1:
                                                     plane.material = stoneMaterial;
                                                     break;
@@ -228,6 +228,7 @@
                                                     break;
                                                 default:
                                                     plane.material = stoneMaterial;
+                                            }
                                         }
                                         
                                         if (terrain[1024 * (x) + 64 * (z - 1) + y + 1] == 0) { // 2, Positive X
@@ -242,7 +243,7 @@
                                                 }
                                             ));
 
-                                            switch (blockid):
+                                            switch (blockid) {
                                                 case 1:
                                                     plane.material = stoneMaterial;
                                                     break;
@@ -266,6 +267,7 @@
                                                     break;
                                                 default:
                                                     plane.material = stoneMaterial;
+                                            }
                                         }
                                                 
                                         if (terrain[1024 * (x - 2) + 64 * (z - 1) + y + 1] == 0) { // 3, Negative X
@@ -280,7 +282,7 @@
                                                 }
                                             ));
 
-                                            switch (blockid):
+                                            switch (blockid) {
                                                 case 1:
                                                     plane.material = stoneMaterial;
                                                     break;
@@ -304,6 +306,7 @@
                                                     break;
                                                 default:
                                                     plane.material = stoneMaterial;
+                                            }
                                         }
                                                 
                                         if (terrain[1024 * (x - 1) + 64 * (z) + y + 1] == 0) { // 0, Positive Z
@@ -318,7 +321,7 @@
                                                 }
                                             ));
 
-                                            switch (blockid):
+                                            switch (blockid) {
                                                 case 1:
                                                     plane.material = stoneMaterial;
                                                     break;
@@ -342,6 +345,7 @@
                                                     break;
                                                 default:
                                                     plane.material = stoneMaterial;
+                                            }
                                         }
                                                 
                                         if (terrain[1024 * (x - 1) + 64 * (z - 1) + y + 2] == 0) { // 4, Positive Y
@@ -356,7 +360,7 @@
                                                 }
                                             ));
 
-                                            switch (blockid):
+                                            switch (blockid) {
                                                 case 1:
                                                     plane.material = stoneMaterial;
                                                     break;
@@ -379,7 +383,8 @@
                                                     plane.material = bedrockMaterial;
                                                     break;
                                                 default:
-                                                    plane.material = stoneMaterial;;
+                                                    plane.material = stoneMaterial;
+                                            }
                                         }
                                                 
                                         if (terrain[1024 * (x - 1) + 64 * (z - 1) + y] == 0) { // 5, Negative Y
@@ -394,7 +399,7 @@
                                                 }
                                             ));
 
-                                            switch (blockid):
+                                            switch (blockid) {
                                                 case 1:
                                                     plane.material = stoneMaterial;
                                                     break;
@@ -418,6 +423,7 @@
                                                     break;
                                                 default:
                                                     plane.material = stoneMaterial;
+                                            }
                                         }
                                     }
                                     
