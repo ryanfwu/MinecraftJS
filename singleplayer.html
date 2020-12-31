@@ -109,9 +109,14 @@
                 function jumpCheck(event) {
                     if (event.keyCode == 32) {
                         var originaly = camera.position.y;
-                        while (camera.position.y <= originaly + 3) {
-                            camera.position.y += 0.1;
-                        }
+                        setInterval(function() {
+                            if (camera.position.y <= originaly + 1.5) {
+                                camera.position.y += 0.1;
+                            }
+                            else {
+                                break;
+                            }
+                        },50);
                     }
                 }
 
