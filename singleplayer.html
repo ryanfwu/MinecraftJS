@@ -146,9 +146,13 @@
                 var stoneMaterial = new BABYLON.StandardMaterial("stone", scene);
                 stoneMaterial.diffuseTexture = stoneTexture;
 
-                var grassTexture = new BABYLON.Texture("./assets/textures/grass_block.png", scene);
-                var grassMaterial = new BABYLON.StandardMaterial("grass", scene);
-                grassMaterial.diffuseTexture = grassTexture;
+                var grassSideTexture = new BABYLON.Texture("./assets/textures/grass_block_side.png", scene);
+                var grassSide = new BABYLON.StandardMaterial("grassSide", scene);
+                grassSide.diffuseTexture = grassSideTexture;
+                
+                var grassTopTexture = new BABYLON.Texture("./assets/textures/grass_block_top.png", scene);
+                var grassTop = new BABYLON.StandardMaterial("grassTop", scene);
+                grassTop.diffuseTexture = grassTopTexture;
 
                 var dirtTexture = new BABYLON.Texture("./assets/textures/dirt.png", scene);
                 var dirtMaterial = new BABYLON.StandardMaterial("dirt", scene);
@@ -162,9 +166,13 @@
                 var planksMaterial = new BABYLON.StandardMaterial("planks", scene);
                 planksMaterial.diffuseTexture = planksTexture;
 
-                var logTexture = new BABYLON.Texture("./assets/textures/log.png", scene);
-                var logMaterial = new BABYLON.StandardMaterial("log", scene);
-                logMaterial.diffuseTexture = logTexture;
+                var logSideTexture = new BABYLON.Texture("./assets/textures/log_side.png", scene);
+                var logSide = new BABYLON.StandardMaterial("logSide", scene);
+                logSide.diffuseTexture = logSideTexture;
+                
+                var logTopTexture = new BABYLON.Texture("./assets/textures/log_top.png", scene);
+                var logTop = new BABYLON.StandardMaterial("logTop", scene);
+                logTop.diffuseTexture = logTopTexture;
 
                 var bedrockTexture = new BABYLON.Texture("./assets/textures/bedrock.png", scene);
                 var bedrockMaterial = new BABYLON.StandardMaterial("bedrock", scene);
