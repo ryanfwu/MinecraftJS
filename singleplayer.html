@@ -225,8 +225,7 @@
                         console.log("[LOG] Render skipped for chunk " + chunkx + " / " + chunkz + " @ " + camerax + " / " + cameraz);
                     }
                 }
-                document.getElementById("loading").innerHTML = "";
-                console.log("[LOG] Erased progress bar");
+                console.log("[LOG] Finished terrain generation");
 
                 var walk1 = new BABYLON.Sound("Walk1", "./assets/sounds/walk1.ogg", scene);
                 var walk2 = new BABYLON.Sound("Walk2", "./assets/sounds/walk2.ogg", scene);
