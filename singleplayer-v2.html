@@ -191,12 +191,54 @@
                     var chunkz = terrain[i][1];
                     var camerax = Math.floor(camera.position.x / 16);
                     var cameraz = Math.floor(camera.position.z / 16);
-
                     if ((Math.abs(chunkx - camerax) < renderdistance) && (Math.abs(chunkz - cameraz) < renderdistance)) {
                         for (var x = 1; x <= 16; x++) {
                             for (var z = 1; z <= 16; z++) {
                                 for (var y = 1; y <= 64; y++) {
                                     var blockid = terrain[i][x+1][z-1][y-1];
+                                    
+                                    try {
+                                        var negativez = terrain[i][x+1][z-2][y-1];
+                                    }
+                                    catch (err) {
+                                        negativez = 0;
+                                    }
+                                    
+                                    try {
+                                        var positivez = terrain[i][x+1][z][y-1];
+                                    }
+                                    catch (err) {
+                                        positivez = 0;
+                                    }
+                                    
+                                    try {
+                                        var negativex = terrain[i][x][z-1][y-1];
+                                    }
+                                    catch (err) {
+                                        negativex = 0;
+                                    }
+                                    
+                                    try {
+                                        var positivex = terrain[i][x+2][z-1][y-1];
+                                    }
+                                    catch (err) {
+                                        positivex = 0;
+                                    }
+                                    
+                                    try {
+                                        var negativey = terrain[i][x+1][z-1][y-2];
+                                    }
+                                    catch (err) {
+                                        negativey = 0;
+                                    }
+                                    
+                                    try {
+                                        var positivey = terrain[i][x+1][z-1][y];
+                                    }
+                                    catch (err) {
+                                        positivey = 0;
+                                    }
+                                    
                                     if (blockid != 0) {
                                         console.log("[LOG] Block " + x + " / " + y + " / " + z + " registered @ " + chunkx + " / " + chunkz);
                                         if (terrain[i][x+1][z-2][y-1] == 0 || terrain[i][x+1][z-2][y-1] == undefined) { // 1, Negative Z
