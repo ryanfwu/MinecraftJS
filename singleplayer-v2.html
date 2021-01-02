@@ -255,7 +255,7 @@
                                         console.log("[LOG] Block " + x + " / " + y + " / " + z + " registered @ " + chunkx + " / " + chunkz);
                                         if (negativez == 0 || negativez == undefined) { // 1, Negative Z
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#1 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-Z", {size: 1, sideOrientation: 1}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-Z", {size: 1/*, sideOrientation: 1*/}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -295,7 +295,7 @@
                                         
                                         if (positivex == 0 || positivex == undefined) { // 2, Positive X
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#2 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "+X", {size: 1, sideOrientation: 2}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "+X", {size: 1/*, sideOrientation: 2*/}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -335,7 +335,7 @@
                                                 
                                         if (negativex == 0 || negativex == undefined) { // 3, Negative X
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#3 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-X", {size: 1, sideOrientation: 3}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-X", {size: 1/*,sideOrientation: 3*/}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -375,7 +375,7 @@
                                                 
                                         if (positivez == 0 || positivez == undefined) { // 0, Positive Z
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#0 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "+Z", {size: 1, sideOrientation: 0}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "+Z", {size: 1/*, sideOrientation: 0*/}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -415,7 +415,7 @@
                                                 
                                         if (positivey == 0 || positivey == undefined) { // 4, Positive Y
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#4 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "+Y", {size: 1, sideOrientation: 4}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "+Y", {size: 1/*, sideOrientation: 4*/}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
@@ -455,7 +455,7 @@
                                                 
                                         if (negativey == 0 || negativey == undefined) { // 5, Negative Y
                                             console.log("[LOG] Block " + x + " / " + y + " / " + z + "#5 rendered @ " + chunkx + " / " + chunkz);
-                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-Y", {size: 1, sideOrientation: 5}, scene);
+                                            var plane = BABYLON.MeshBuilder.CreatePlane("plane-" + x + "-" + y + "-" + z + "-Y", {size: 1/*, sideOrientation: 5*/}, scene);
                                             plane.position = new BABYLON.Vector3(x + 16 * chunkx, y, z + 16 * chunkz);
                                             plane.checkCollisions = true;
                                             plane.actionManager = new BABYLON.ActionManager(scene);
