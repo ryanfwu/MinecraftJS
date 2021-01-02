@@ -40,6 +40,19 @@
             var seed2 = reverseSeed(seed);
             var pn = new Perlin(seed);
             console.log("[LOG] Creating world with seed " + seed);
+            
+            window.addEventListener("keyup", jumpCheck(event), false);
+            
+            var jumpCheck = function(event) {
+                if (event.keyCode == 32) {
+                    var originaly = camera.position.y;
+                    while (camera.position.y <= originaly + 1.5) {
+                        setTimeout(function() {
+                            camera.position.y += 0.05;
+                        }, 25);
+                    }
+                }
+            }
 
             var perlinGenerate = function(x, z, biome) {
                 if (biome == 1 || biome == 2) { // Plains or Desert
@@ -160,18 +173,6 @@
                 light2.radius = 32;
 
                 light2.parent = camera;
-
-                window.addEventListener("keyup", jumpCheck, false);
-                function jumpCheck(event) {
-                    if (event.keyCode == 32) {
-                        var originaly = camera.position.y;
-                        while (camera.position.y <= originaly + 1.5) {
-                            setTimeout(function() {
-                                camera.position.y += 0.05;
-                            }, 25);
-                        }
-                    }
-                }
 
                 var faceUV = new Array(6);
                 for (var i = 0; i < 6; i++) {
