@@ -119,9 +119,9 @@
                 scene.gravity = new BABYLON.Vector3(0, -9.81 / engine.getFps().toFixed(), 0);
                 scene.collisionsEnabled = true;
 
-                var light = new BABYLON.PointLight("light", new BABYLON.Vector3(8, 150, 8), scene);
-                light.intensity = 0.5;
-                light.radius = 16;
+                var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 100, 0), scene);
+                /* light.intensity = 0.5;
+                light.radius = 16; */
 
                 var camera = new BABYLON.UniversalCamera('camera', new BABYLON.Vector3(8, 70, 8), scene);
                 camera.setTarget(BABYLON.Vector3.Zero());
