@@ -61,18 +61,18 @@
 
             var perlinGenerate = function(x, z, biome) {
                 if (biome == 1 || biome == 2) { // Plains or Desert
-                    var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 31)) + 1;
-                    // console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in plains biome");
+                    var terrainGeneration = (Math.round (pn.noise(x/5, z/5, 0) * 31)) + 1;
+                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in plains biome");
                     return terrainGeneration;
                 }
                 else if (biome == 3) { // Mountains
                     var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 63)) + 1;
-                    // console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in mountains biome");
+                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in mountains biome");
                     return terrainGeneration;
                 }
                 else {
                     var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 31)) + 1;
-                    // console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in unknown biome");
+                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in unknown biome");
                     return terrainGeneration;
                 }
             };
@@ -148,16 +148,7 @@
             };
 
             var createScene = function(terrain) {
-                var time = sessionStorage.getItem("time");
-                
-                if (time < 72000) {
-                    sessionStorage.setItem("time", time + 1);
-                }
-                else {
-                    sessionStorage.setItem("time", 0);
-                }
-                
-                // console.log(terrain);
+                console.log(terrain);
                 
                 var scene = new BABYLON.Scene(engine);
                 scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
@@ -165,13 +156,6 @@
                 scene.collisionsEnabled = true;
 
                 var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 100, 0), scene);
-                if (time <= 31000) {
-                    light.intensity = (31000/light);
-                }
-                else {
-                    light.intensity = (31000/(72000-light));
-                }
-                
                 /* light.intensity = 0.5;
                 light.radius = 16; */
 
@@ -236,15 +220,14 @@
                 var bedrockMaterial = new BABYLON.StandardMaterial("bedrock", scene);
                 bedrockTexture.diffuseTexture = bedrockTexture;
 
-                // var renderdistance = 4;
+                var renderdistance = 4;
 
                 for (var i = 0; i < terrain.length; i++) {
                     var chunkx = terrain[i][0];
                     var chunkz = terrain[i][1];
                     var camerax = Math.floor(camera.position.x / 16);
                     var cameraz = Math.floor(camera.position.z / 16);
-                    // if ((Math.abs(chunkx - camerax) < renderdistance) && (Math.abs(chunkz - cameraz) < renderdistance)) {
-                    if (true) {
+                    if ((Math.abs(chunkx - camerax) < renderdistance) && (Math.abs(chunkz - cameraz) < renderdistance)) {
                         for (var x = 1; x <= 16; x++) {
                             for (var z = 1; z <= 16; z++) {
                                 for (var y = 1; y <= 64; y++) {
@@ -254,42 +237,42 @@
                                         var negativez = terrain[i][x+1][z-2][y-1];
                                     }
                                     catch (err) {
-                                        negativez = 1;
+                                        negativez = 0;
                                     }
                                     
                                     try {
                                         var positivez = terrain[i][x+1][z][y-1];
                                     }
                                     catch (err) {
-                                        positivez = 1;
+                                        positivez = 0;
                                     }
                                     
                                     try {
                                         var negativex = terrain[i][x][z-1][y-1];
                                     }
                                     catch (err) {
-                                        negativex = 1;
+                                        negativex = 0;
                                     }
                                     
                                     try {
                                         var positivex = terrain[i][x+2][z-1][y-1];
                                     }
                                     catch (err) {
-                                        positivex = 1;
+                                        positivex = 0;
                                     }
                                     
                                     try {
                                         var negativey = terrain[i][x+1][z-1][y-2];
                                     }
                                     catch (err) {
-                                        negativey = 1;
+                                        negativey = 0;
                                     }
                                     
                                     try {
                                         var positivey = terrain[i][x+1][z-1][y];
                                     }
                                     catch (err) {
-                                        positivey = 1;
+                                        positivey = 0;
                                     }
                                     
                                     if (blockid != 0) {
@@ -540,10 +523,7 @@
                     }
                     else {
                         console.log("[LOG] Render skipped for chunk " + chunkx + " / " + chunkz + " @ " + camerax + " / " + cameraz);
-                        alert("[LOG] Render skipped for chunk " + chunkx + " / " + chunkz + " @ " + camerax + " / " + cameraz);
                     }
-                    
-                    return scene;
                 }
                 console.log("[LOG] Finished terrain generation");
 
@@ -595,8 +575,7 @@
             };
             
             var terrain = [];
-            var worldSize = [-1, 1];
-            sessionStorage.setItem("time", 0);
+            var worldSize = [0, 1];
             
             for (var terrainx = worldSize[0]; terrainx <= worldSize[1]; terrainx++) {
                 for (var terrainy = worldSize[0]; terrainy <= worldSize[1]; terrainy++) {
@@ -605,15 +584,11 @@
             }
 
             console.log("[LOG] Terrain generated with length " + terrain.length);
-            
+
             var scene = createScene(terrain);
 
-            engine.runRenderLoop(function() {
+            engine.runRenderLoop(function(){
                 scene.render();
-            });
-            
-            window.addEventListener("resize", function() {
-                engine.resize();
             });
 
             canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
