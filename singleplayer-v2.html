@@ -147,7 +147,14 @@
                 return chunk;
             };
 
-            var createScene = function(terrain) {
+            var createScene = function(terrain, time) {
+                if (time < 72000) {
+                    time += 1;
+                }
+                else {
+                    time = 0;
+                }
+                
                 console.log(terrain);
                 
                 var scene = new BABYLON.Scene(engine);
@@ -156,6 +163,13 @@
                 scene.collisionsEnabled = true;
 
                 var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 100, 0), scene);
+                if (time <= 31000) {
+                    light.intensity = (31000/light);
+                }
+                else {
+                    light.intensity = (31000/(72000-light));
+                }
+                
                 /* light.intensity = 0.5;
                 light.radius = 16; */
 
@@ -576,6 +590,7 @@
             
             var terrain = [];
             var worldSize = [0, 1];
+            var time = 0;
             
             for (var terrainx = worldSize[0]; terrainx <= worldSize[1]; terrainx++) {
                 for (var terrainy = worldSize[0]; terrainy <= worldSize[1]; terrainy++) {
@@ -585,7 +600,7 @@
 
             console.log("[LOG] Terrain generated with length " + terrain.length);
 
-            var scene = createScene(terrain);
+            var scene = createScene(terrain, time);
 
             engine.runRenderLoop(function(){
                 scene.render();
