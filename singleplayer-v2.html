@@ -61,7 +61,7 @@
 
             var perlinGenerate = function(x, z, biome) {
                 if (biome == 1 || biome == 2) { // Plains or Desert
-                    var terrainGeneration = (Math.round (pn.noise(x/5, z/5, 0) * 31)) + 1;
+                    var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 31)) + 1;
                     console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in plains biome");
                     return terrainGeneration;
                 }
