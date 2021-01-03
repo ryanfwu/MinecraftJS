@@ -147,7 +147,7 @@
                 return chunk;
             };
 
-            var createScene = function(terrain, time) {
+            var createScene = function(terrain) {
                 if (time < 72000) {
                     time += 1;
                 }
@@ -538,6 +538,8 @@
                     else {
                         console.log("[LOG] Render skipped for chunk " + chunkx + " / " + chunkz + " @ " + camerax + " / " + cameraz);
                     }
+                    
+                    return time;
                 }
                 console.log("[LOG] Finished terrain generation");
 
@@ -600,7 +602,7 @@
 
             console.log("[LOG] Terrain generated with length " + terrain.length);
 
-            var scene = createScene(terrain, time);
+            var scene = createScene(terrain);
 
             engine.runRenderLoop(function(){
                 scene.render();
