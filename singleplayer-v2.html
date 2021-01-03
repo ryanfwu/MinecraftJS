@@ -148,11 +148,13 @@
             };
 
             var createScene = function(terrain) {
+                var time = sessionStorage.getItem("time");
+                
                 if (time < 72000) {
-                    time += 1;
+                    sessionStorage.setItem("time", time + 1);
                 }
                 else {
-                    time = 0;
+                    sessionStorage.setItem("time", 0);
                 }
                 
                 console.log(terrain);
@@ -592,7 +594,7 @@
             
             var terrain = [];
             var worldSize = [0, 1];
-            var time = 0;
+            sessionStorage.setItem("time", 0);
             
             for (var terrainx = worldSize[0]; terrainx <= worldSize[1]; terrainx++) {
                 for (var terrainy = worldSize[0]; terrainy <= worldSize[1]; terrainy++) {
