@@ -601,9 +601,15 @@
             }
 
             console.log("[LOG] Terrain generated with length " + terrain.length);
+            
+            var scene = createScene(terrain);
 
-            engine.runRenderLoop(function(){
-                createScene(terrain).render();
+            engine.runRenderLoop(function() {
+                scene.render();
+            });
+            
+            window.addEventListener("resize", function() {
+                engine.resize();
             });
 
             canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
