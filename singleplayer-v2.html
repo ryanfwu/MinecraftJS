@@ -10,7 +10,7 @@
         <script src="./js/perlin.js"></script> <!-- Perlin Noise -->
         <script src="./js/progress.js"></script> <!-- Loading Bar -->
     </head>
-    <body>
+    <body onKeyDown="jumpCheck(event)">
         <canvas id="canvas" onclick="this.requestPointerLock();"></canvas>
         <div class="progress" id="progress_div">
             <div class="bar" id="bar1"></div>
