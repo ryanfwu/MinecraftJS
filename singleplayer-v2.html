@@ -62,17 +62,17 @@
             var perlinGenerate = function(x, z, biome) {
                 if (biome == 1 || biome == 2) { // Plains or Desert
                     var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 31)) + 1;
-                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in plains biome");
+                    // console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in plains biome");
                     return terrainGeneration;
                 }
                 else if (biome == 3) { // Mountains
                     var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 63)) + 1;
-                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in mountains biome");
+                    // console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in mountains biome");
                     return terrainGeneration;
                 }
                 else {
                     var terrainGeneration = (Math.round (pn.noise(x/10, z/10, 0) * 31)) + 1;
-                    console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in unknown biome");
+                    // console.log("[LOG] Perlin noise generated with data " + terrainGeneration + " in unknown biome");
                     return terrainGeneration;
                 }
             };
@@ -157,7 +157,7 @@
                     sessionStorage.setItem("time", 0);
                 }
                 
-                console.log(terrain);
+                // console.log(terrain);
                 
                 var scene = new BABYLON.Scene(engine);
                 scene.clearColor = new BABYLON.Color3(0.529, 0.808, 0.922);
