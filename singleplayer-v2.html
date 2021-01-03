@@ -539,7 +539,7 @@
                         console.log("[LOG] Render skipped for chunk " + chunkx + " / " + chunkz + " @ " + camerax + " / " + cameraz);
                     }
                     
-                    return time;
+                    return scene;
                 }
                 console.log("[LOG] Finished terrain generation");
 
@@ -602,10 +602,8 @@
 
             console.log("[LOG] Terrain generated with length " + terrain.length);
 
-            var scene = createScene(terrain);
-
             engine.runRenderLoop(function(){
-                scene.render();
+                createScene(terrain).render();
             });
 
             canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
